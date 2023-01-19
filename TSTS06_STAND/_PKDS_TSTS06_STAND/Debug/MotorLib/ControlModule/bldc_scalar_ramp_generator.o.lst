@@ -1,0 +1,353 @@
+   1              	 .cpu cortex-m4
+   2              	 .eabi_attribute 27,1
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,1
+  11              	 .eabi_attribute 18,4
+  12              	 .file "bldc_scalar_ramp_generator.c"
+  13              	 .text
+  14              	.Ltext0:
+  15              	 .cfi_sections .debug_frame
+  16              	 .section .ram_code,"ax",%progbits
+  17              	 .align 1
+  18              	 .global Motor0_BLDC_SCALAR_Ramp_Linear
+  19              	 .arch armv7e-m
+  20              	 .syntax unified
+  21              	 .thumb
+  22              	 .thumb_func
+  23              	 .fpu fpv4-sp-d16
+  25              	Motor0_BLDC_SCALAR_Ramp_Linear:
+  26              	.LFB133:
+  27              	 .file 1 "../MotorLib/ControlModule/bldc_scalar_ramp_generator.c"
+   1:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** /**
+   2:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * @file bldc_scalar_ramp_generator.c
+   3:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * @brief Linear ramp generator
+   4:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * @date 2016-08-31
+   5:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+   6:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * @cond
+   7:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  **************************************************************************************************
+   8:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * BLDC_SCALAR_CONTROL v1.0.2 - BLDC motor control using block commutation
+   9:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * Copyright (c) 2015-2016, Infineon Technologies AG
+  10:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * All rights reserved.
+  11:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  12:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  13:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * following conditions are met:
+  14:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  15:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  16:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *   disclaimer.
+  17:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  18:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  19:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  20:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  21:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  22:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *   products derived from this software without specific prior written permission.
+  23:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  24:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  25:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  26:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  27:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  28:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  29:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  30:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  31:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  32:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  33:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * with Infineon Technologies AG (dave@infineon.com).
+  34:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  **************************************************************************************************
+  35:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  36:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * Change History
+  37:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * --------------
+  38:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  39:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * 2016-08-31:
+  40:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *     - Initial version
+  41:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  42:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * @endcond
+  43:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  *
+  44:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  */
+  45:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+  46:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** /**************************************************************************************************
+  47:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * HEADER FILES
+  48:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  **************************************************************************************************
+  49:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+  50:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** #include "bldc_scalar_ramp_generator.h"
+  51:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** /**************************************************************************************************
+  52:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * MACROS
+  53:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  **************************************************************************************************
+  54:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** #define BLDC_SCALAR_RAMP_POW_16   (0xFFFF)
+  55:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** #define BLDC_SCALAR_RAMP_SHIFT_16 (16U)
+  56:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** /**************************************************************************************************
+  57:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  * API IMPLEMENTATION
+  58:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****  **************************************************************************************************
+  59:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** #if (MOTOR0_BLDC_SCALAR_ENABLE_RAMP == 1U)
+  60:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** /* This generates the linear ramp as per configured slew rate */
+  61:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** RAM_ATTRIBUTE void Motor0_BLDC_SCALAR_Ramp_Linear(void)
+  62:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** {
+  28              	 .loc 1 62 1
+  29              	 .cfi_startproc
+  30              	 
+  31              	 
+  32              	 
+  33 0000 80B4     	 push {r7}
+  34              	.LCFI0:
+  35              	 .cfi_def_cfa_offset 4
+  36              	 .cfi_offset 7,-4
+  37 0002 83B0     	 sub sp,sp,#12
+  38              	.LCFI1:
+  39              	 .cfi_def_cfa_offset 16
+  40 0004 00AF     	 add r7,sp,#0
+  41              	.LCFI2:
+  42              	 .cfi_def_cfa_register 7
+  63:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   static int32_t sum;     /* to find the increment/decrement value */
+  64:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   int32_t setval_diff;   /* difference between ramp input and output value */
+  65:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   int32_t ramp_val;      /* value by which set value is incremented or decremented */
+  66:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+  67:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   /* ramp up - if target end value is greater than the ramp output set_value */
+  68:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   if ((Motor0_BLDC_SCALAR_Ramp.input_value) >= Motor0_BLDC_SCALAR_Ramp.set_value)
+  43              	 .loc 1 68 31
+  44 0006 324B     	 ldr r3,.L7
+  45 0008 5A68     	 ldr r2,[r3,#4]
+  46              	 .loc 1 68 71
+  47 000a 314B     	 ldr r3,.L7
+  48 000c 1B68     	 ldr r3,[r3]
+  49              	 .loc 1 68 6
+  50 000e 9A42     	 cmp r2,r3
+  51 0010 29DB     	 blt .L2
+  69:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   {
+  70:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     /* Find increment value using fixed point representation */
+  71:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     setval_diff = (Motor0_BLDC_SCALAR_Ramp.input_value) - Motor0_BLDC_SCALAR_Ramp.set_value;
+  52              	 .loc 1 71 43
+  53 0012 2F4B     	 ldr r3,.L7
+  54 0014 5A68     	 ldr r2,[r3,#4]
+  55              	 .loc 1 71 82
+  56 0016 2E4B     	 ldr r3,.L7
+  57 0018 1B68     	 ldr r3,[r3]
+  58              	 .loc 1 71 17
+  59 001a D31A     	 subs r3,r2,r3
+  60 001c 7B60     	 str r3,[r7,#4]
+  72:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum + (int32_t)Motor0_BLDC_SCALAR_Ramp.ramp_rate);
+  61              	 .loc 1 72 59
+  62 001e 2C4B     	 ldr r3,.L7
+  63 0020 9B68     	 ldr r3,[r3,#8]
+  64              	 .loc 1 72 27
+  65 0022 1A46     	 mov r2,r3
+  66              	 .loc 1 72 11
+  67 0024 2B4B     	 ldr r3,.L7+4
+  68 0026 1B68     	 ldr r3,[r3]
+  69 0028 1344     	 add r3,r3,r2
+  70              	 .loc 1 72 9
+  71 002a 2A4A     	 ldr r2,.L7+4
+  72 002c 1360     	 str r3,[r2]
+  73:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     ramp_val = (int32_t)(sum >> BLDC_SCALAR_RAMP_SHIFT_16);
+  73              	 .loc 1 73 16
+  74 002e 294B     	 ldr r3,.L7+4
+  75 0030 1B68     	 ldr r3,[r3]
+  76              	 .loc 1 73 14
+  77 0032 1B14     	 asrs r3,r3,#16
+  78 0034 3B60     	 str r3,[r7]
+  74:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum & BLDC_SCALAR_RAMP_POW_16);
+  79              	 .loc 1 74 11
+  80 0036 274B     	 ldr r3,.L7+4
+  81 0038 1B68     	 ldr r3,[r3]
+  82 003a 9BB2     	 uxth r3,r3
+  83              	 .loc 1 74 9
+  84 003c 254A     	 ldr r2,.L7+4
+  85 003e 1360     	 str r3,[r2]
+  75:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+  76:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     /* Set value reached the end point */
+  77:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     if (setval_diff <= ramp_val)
+  86              	 .loc 1 77 8
+  87 0040 7A68     	 ldr r2,[r7,#4]
+  88 0042 3B68     	 ldr r3,[r7]
+  89 0044 9A42     	 cmp r2,r3
+  90 0046 07DC     	 bgt .L3
+  78:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     {
+  79:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****       Motor0_BLDC_SCALAR_Ramp.set_value = (Motor0_BLDC_SCALAR_Ramp.input_value);
+  91              	 .loc 1 79 67
+  92 0048 214B     	 ldr r3,.L7
+  93 004a 5B68     	 ldr r3,[r3,#4]
+  94              	 .loc 1 79 41
+  95 004c 204A     	 ldr r2,.L7
+  96 004e 1360     	 str r3,[r2]
+  80:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****       sum = 0;
+  97              	 .loc 1 80 11
+  98 0050 204B     	 ldr r3,.L7+4
+  99 0052 0022     	 movs r2,#0
+ 100 0054 1A60     	 str r2,[r3]
+  81:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     }
+  82:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     else
+  83:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     {
+  84:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****       Motor0_BLDC_SCALAR_Ramp.set_value += ramp_val;
+  85:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     }
+  86:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   }
+  87:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+  88:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   /* ramp down - if target end value is less than the ramp output set_value */
+  89:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   else if ((Motor0_BLDC_SCALAR_Ramp.input_value) < Motor0_BLDC_SCALAR_Ramp.set_value)
+  90:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   {
+  91:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     /* Find decrement value using fixed point representation */
+  92:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     setval_diff =  Motor0_BLDC_SCALAR_Ramp.set_value - (Motor0_BLDC_SCALAR_Ramp.input_value);
+  93:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum + (int32_t)Motor0_BLDC_SCALAR_Ramp.ramp_rate);
+  94:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     ramp_val = (int32_t)(sum >> BLDC_SCALAR_RAMP_SHIFT_16);
+  95:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum & BLDC_SCALAR_RAMP_POW_16);
+  96:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+  97:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     /* Set value reached the end point */
+  98:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     if (setval_diff <= ramp_val)
+  99:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     {
+ 100:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****       Motor0_BLDC_SCALAR_Ramp.set_value = (Motor0_BLDC_SCALAR_Ramp.input_value);
+ 101:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****       sum = 0;
+ 102:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     }
+ 103:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     else
+ 104:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     {
+ 105:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****       Motor0_BLDC_SCALAR_Ramp.set_value -= ramp_val;
+ 106:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     }
+ 107:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   }
+ 108:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   else
+ 109:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   {
+ 110:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+ 111:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   }
+ 112:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** }
+ 101              	 .loc 1 112 1
+ 102 0056 35E0     	 b .L6
+ 103              	.L3:
+  84:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     }
+ 104              	 .loc 1 84 41
+ 105 0058 1D4B     	 ldr r3,.L7
+ 106 005a 1A68     	 ldr r2,[r3]
+ 107 005c 3B68     	 ldr r3,[r7]
+ 108 005e 1344     	 add r3,r3,r2
+ 109 0060 1B4A     	 ldr r2,.L7
+ 110 0062 1360     	 str r3,[r2]
+ 111              	 .loc 1 112 1
+ 112 0064 2EE0     	 b .L6
+ 113              	.L2:
+  89:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   {
+ 114              	 .loc 1 89 36
+ 115 0066 1A4B     	 ldr r3,.L7
+ 116 0068 5A68     	 ldr r2,[r3,#4]
+  89:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   {
+ 117              	 .loc 1 89 75
+ 118 006a 194B     	 ldr r3,.L7
+ 119 006c 1B68     	 ldr r3,[r3]
+  89:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****   {
+ 120              	 .loc 1 89 11
+ 121 006e 9A42     	 cmp r2,r3
+ 122 0070 28DA     	 bge .L6
+  92:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum + (int32_t)Motor0_BLDC_SCALAR_Ramp.ramp_rate);
+ 123              	 .loc 1 92 43
+ 124 0072 174B     	 ldr r3,.L7
+ 125 0074 1A68     	 ldr r2,[r3]
+  92:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum + (int32_t)Motor0_BLDC_SCALAR_Ramp.ramp_rate);
+ 126              	 .loc 1 92 80
+ 127 0076 164B     	 ldr r3,.L7
+ 128 0078 5B68     	 ldr r3,[r3,#4]
+  92:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum + (int32_t)Motor0_BLDC_SCALAR_Ramp.ramp_rate);
+ 129              	 .loc 1 92 17
+ 130 007a D31A     	 subs r3,r2,r3
+ 131 007c 7B60     	 str r3,[r7,#4]
+  93:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     ramp_val = (int32_t)(sum >> BLDC_SCALAR_RAMP_SHIFT_16);
+ 132              	 .loc 1 93 59
+ 133 007e 144B     	 ldr r3,.L7
+ 134 0080 9B68     	 ldr r3,[r3,#8]
+  93:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     ramp_val = (int32_t)(sum >> BLDC_SCALAR_RAMP_SHIFT_16);
+ 135              	 .loc 1 93 27
+ 136 0082 1A46     	 mov r2,r3
+  93:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     ramp_val = (int32_t)(sum >> BLDC_SCALAR_RAMP_SHIFT_16);
+ 137              	 .loc 1 93 11
+ 138 0084 134B     	 ldr r3,.L7+4
+ 139 0086 1B68     	 ldr r3,[r3]
+ 140 0088 1344     	 add r3,r3,r2
+  93:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     ramp_val = (int32_t)(sum >> BLDC_SCALAR_RAMP_SHIFT_16);
+ 141              	 .loc 1 93 9
+ 142 008a 124A     	 ldr r2,.L7+4
+ 143 008c 1360     	 str r3,[r2]
+  94:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum & BLDC_SCALAR_RAMP_POW_16);
+ 144              	 .loc 1 94 16
+ 145 008e 114B     	 ldr r3,.L7+4
+ 146 0090 1B68     	 ldr r3,[r3]
+  94:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     sum = (int32_t)(sum & BLDC_SCALAR_RAMP_POW_16);
+ 147              	 .loc 1 94 14
+ 148 0092 1B14     	 asrs r3,r3,#16
+ 149 0094 3B60     	 str r3,[r7]
+  95:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+ 150              	 .loc 1 95 11
+ 151 0096 0F4B     	 ldr r3,.L7+4
+ 152 0098 1B68     	 ldr r3,[r3]
+ 153 009a 9BB2     	 uxth r3,r3
+  95:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c **** 
+ 154              	 .loc 1 95 9
+ 155 009c 0D4A     	 ldr r2,.L7+4
+ 156 009e 1360     	 str r3,[r2]
+  98:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     {
+ 157              	 .loc 1 98 8
+ 158 00a0 7A68     	 ldr r2,[r7,#4]
+ 159 00a2 3B68     	 ldr r3,[r7]
+ 160 00a4 9A42     	 cmp r2,r3
+ 161 00a6 07DC     	 bgt .L5
+ 100:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****       sum = 0;
+ 162              	 .loc 1 100 67
+ 163 00a8 094B     	 ldr r3,.L7
+ 164 00aa 5B68     	 ldr r3,[r3,#4]
+ 100:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****       sum = 0;
+ 165              	 .loc 1 100 41
+ 166 00ac 084A     	 ldr r2,.L7
+ 167 00ae 1360     	 str r3,[r2]
+ 101:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     }
+ 168              	 .loc 1 101 11
+ 169 00b0 084B     	 ldr r3,.L7+4
+ 170 00b2 0022     	 movs r2,#0
+ 171 00b4 1A60     	 str r2,[r3]
+ 172              	 .loc 1 112 1
+ 173 00b6 05E0     	 b .L6
+ 174              	.L5:
+ 105:../MotorLib/ControlModule/bldc_scalar_ramp_generator.c ****     }
+ 175              	 .loc 1 105 41
+ 176 00b8 054B     	 ldr r3,.L7
+ 177 00ba 1A68     	 ldr r2,[r3]
+ 178 00bc 3B68     	 ldr r3,[r7]
+ 179 00be D31A     	 subs r3,r2,r3
+ 180 00c0 034A     	 ldr r2,.L7
+ 181 00c2 1360     	 str r3,[r2]
+ 182              	.L6:
+ 183              	 .loc 1 112 1
+ 184 00c4 00BF     	 nop
+ 185 00c6 0C37     	 adds r7,r7,#12
+ 186              	.LCFI3:
+ 187              	 .cfi_def_cfa_offset 4
+ 188 00c8 BD46     	 mov sp,r7
+ 189              	.LCFI4:
+ 190              	 .cfi_def_cfa_register 13
+ 191              	 
+ 192 00ca 5DF8047B 	 ldr r7,[sp],#4
+ 193              	.LCFI5:
+ 194              	 .cfi_restore 7
+ 195              	 .cfi_def_cfa_offset 0
+ 196 00ce 7047     	 bx lr
+ 197              	.L8:
+ 198              	 .align 2
+ 199              	.L7:
+ 200 00d0 00000000 	 .word Motor0_BLDC_SCALAR_Ramp
+ 201 00d4 00000000 	 .word sum.0
+ 202              	 .cfi_endproc
+ 203              	.LFE133:
+ 205              	 .section .bss.sum.0,"aw",%nobits
+ 206              	 .align 2
+ 209              	sum.0:
+ 210 0000 00000000 	 .space 4
+ 211              	 .text
+ 212              	.Letext0:
+ 213              	 .file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 214              	 .file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 215              	 .file 4 "../MotorLib/ControlModule/bldc_scalar_ramp_generator.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 bldc_scalar_ramp_generator.c
+    {standard input}:17     .ram_code:00000000 $t
+    {standard input}:25     .ram_code:00000000 Motor0_BLDC_SCALAR_Ramp_Linear
+    {standard input}:200    .ram_code:000000d0 $d
+    {standard input}:209    .bss.sum.0:00000000 sum.0
+    {standard input}:206    .bss.sum.0:00000000 $d
+
+UNDEFINED SYMBOLS
+Motor0_BLDC_SCALAR_Ramp
