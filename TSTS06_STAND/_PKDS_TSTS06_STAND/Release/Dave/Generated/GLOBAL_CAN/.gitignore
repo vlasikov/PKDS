@@ -1,0 +1,7 @@
+/global_can.d
+/global_can.o
+/global_can.o.lst
+/global_can_conf.d
+/global_can_conf.o
+/global_can_conf.o.lst
+/subdir.mk

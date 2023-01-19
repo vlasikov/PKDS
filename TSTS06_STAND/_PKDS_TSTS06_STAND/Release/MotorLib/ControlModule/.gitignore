@@ -1,0 +1,10 @@
+/bldc_scalar_control_hall.d
+/bldc_scalar_control_hall.o
+/bldc_scalar_control_hall.o.lst
+/bldc_scalar_control_scheme.d
+/bldc_scalar_control_scheme.o
+/bldc_scalar_control_scheme.o.lst
+/bldc_scalar_ramp_generator.d
+/bldc_scalar_ramp_generator.o
+/bldc_scalar_ramp_generator.o.lst
+/subdir.mk

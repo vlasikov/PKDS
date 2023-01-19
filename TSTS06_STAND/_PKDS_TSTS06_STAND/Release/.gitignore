@@ -1,0 +1,12 @@
+/_PKDS_TSTS06_STAND.elf
+/_PKDS_TSTS06_STAND.hex
+/_PKDS_TSTS06_STAND.lst
+/_PKDS_TSTS06_STAND.map
+/main.d
+/main.o
+/main.o.lst
+/makefile
+/objects.mk
+/objects.rsp
+/sources.mk
+/subdir.mk

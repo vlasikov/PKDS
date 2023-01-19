@@ -1,0 +1,4 @@
+/subdir.mk
+/syscalls.d
+/syscalls.o
+/syscalls.o.lst
