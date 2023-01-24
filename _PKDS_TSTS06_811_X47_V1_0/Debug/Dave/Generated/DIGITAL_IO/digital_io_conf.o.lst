@@ -1,0 +1,536 @@
+   1              	 .cpu cortex-m4
+   2              	 .eabi_attribute 27,1
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,1
+  11              	 .eabi_attribute 18,4
+  12              	 .file "digital_io_conf.c"
+  13              	 .text
+  14              	.Ltext0:
+  15              	 .cfi_sections .debug_frame
+  16              	 .global SERVICE_BUT
+  17              	 .section .rodata.SERVICE_BUT,"a"
+  18              	 .align 2
+  21              	SERVICE_BUT:
+  22 0000 008F0248 	 .word 1208127232
+  23 0004 00       	 .byte 0
+  24 0005 00000000 	 .space 11
+  24      00000000 
+  24      000000
+  25 0010 02       	 .byte 2
+  26 0011 00       	 .byte 0
+  27 0012 0000     	 .space 2
+  28              	 .global STATUS_LED_G
+  29              	 .section .rodata.STATUS_LED_G,"a"
+  30              	 .align 2
+  33              	STATUS_LED_G:
+  34 0000 00830248 	 .word 1208124160
+  35 0004 80       	 .byte -128
+  36 0005 000000   	 .space 3
+  37 0008 00000100 	 .word 65536
+  38 000c 04       	 .byte 4
+  39 000d 000000   	 .space 3
+  40 0010 09       	 .byte 9
+  41 0011 00       	 .byte 0
+  42 0012 0000     	 .space 2
+  43              	 .global STATUS_LED_Y
+  44              	 .section .rodata.STATUS_LED_Y,"a"
+  45              	 .align 2
+  48              	STATUS_LED_Y:
+  49 0000 00830248 	 .word 1208124160
+  50 0004 80       	 .byte -128
+  51 0005 000000   	 .space 3
+  52 0008 00000100 	 .word 65536
+  53 000c 04       	 .byte 4
+  54 000d 000000   	 .space 3
+  55 0010 0A       	 .byte 10
+  56 0011 00       	 .byte 0
+  57 0012 0000     	 .space 2
+  58              	 .global STATUS_LED_R
+  59              	 .section .rodata.STATUS_LED_R,"a"
+  60              	 .align 2
+  63              	STATUS_LED_R:
+  64 0000 00830248 	 .word 1208124160
+  65 0004 80       	 .byte -128
+  66 0005 000000   	 .space 3
+  67 0008 00000100 	 .word 65536
+  68 000c 04       	 .byte 4
+  69 000d 000000   	 .space 3
+  70 0010 0B       	 .byte 11
+  71 0011 00       	 .byte 0
+  72 0012 0000     	 .space 2
+  73              	 .global DI_NPN_EN
+  74              	 .section .rodata.DI_NPN_EN,"a"
+  75              	 .align 2
+  78              	DI_NPN_EN:
+  79 0000 00830248 	 .word 1208124160
+  80 0004 80       	 .byte -128
+  81 0005 000000   	 .space 3
+  82 0008 00000100 	 .word 65536
+  83 000c 04       	 .byte 4
+  84 000d 000000   	 .space 3
+  85 0010 07       	 .byte 7
+  86 0011 00       	 .byte 0
+  87 0012 0000     	 .space 2
+  88              	 .global DI_PNP_EN
+  89              	 .section .rodata.DI_PNP_EN,"a"
+  90              	 .align 2
+  93              	DI_PNP_EN:
+  94 0000 00830248 	 .word 1208124160
+  95 0004 80       	 .byte -128
+  96 0005 000000   	 .space 3
+  97 0008 00000100 	 .word 65536
+  98 000c 04       	 .byte 4
+  99 000d 000000   	 .space 3
+ 100 0010 08       	 .byte 8
+ 101 0011 00       	 .byte 0
+ 102 0012 0000     	 .space 2
+ 103              	 .global GROUP_IN_EN
+ 104              	 .section .rodata.GROUP_IN_EN,"a"
+ 105              	 .align 2
+ 108              	GROUP_IN_EN:
+ 109 0000 00820248 	 .word 1208123904
+ 110 0004 80       	 .byte -128
+ 111 0005 000000   	 .space 3
+ 112 0008 00000100 	 .word 65536
+ 113 000c 04       	 .byte 4
+ 114 000d 000000   	 .space 3
+ 115 0010 00       	 .byte 0
+ 116 0011 00       	 .byte 0
+ 117 0012 0000     	 .space 2
+ 118              	 .global HS_SW_1
+ 119              	 .section .rodata.HS_SW_1,"a"
+ 120              	 .align 2
+ 123              	HS_SW_1:
+ 124 0000 00810248 	 .word 1208123648
+ 125 0004 80       	 .byte -128
+ 126 0005 000000   	 .space 3
+ 127 0008 00000100 	 .word 65536
+ 128 000c 04       	 .byte 4
+ 129 000d 000000   	 .space 3
+ 130 0010 0A       	 .byte 10
+ 131 0011 00       	 .byte 0
+ 132 0012 0000     	 .space 2
+ 133              	 .global HS_SW_2
+ 134              	 .section .rodata.HS_SW_2,"a"
+ 135              	 .align 2
+ 138              	HS_SW_2:
+ 139 0000 00810248 	 .word 1208123648
+ 140 0004 80       	 .byte -128
+ 141 0005 000000   	 .space 3
+ 142 0008 00000100 	 .word 65536
+ 143 000c 04       	 .byte 4
+ 144 000d 000000   	 .space 3
+ 145 0010 0B       	 .byte 11
+ 146 0011 00       	 .byte 0
+ 147 0012 0000     	 .space 2
+ 148              	 .global LS_SW_4
+ 149              	 .section .rodata.LS_SW_4,"a"
+ 150              	 .align 2
+ 153              	LS_SW_4:
+ 154 0000 00830248 	 .word 1208124160
+ 155 0004 80       	 .byte -128
+ 156 0005 000000   	 .space 3
+ 157 0008 00000100 	 .word 65536
+ 158 000c 04       	 .byte 4
+ 159 000d 000000   	 .space 3
+ 160 0010 02       	 .byte 2
+ 161 0011 00       	 .byte 0
+ 162 0012 0000     	 .space 2
+ 163              	 .global LS_SW_3
+ 164              	 .section .rodata.LS_SW_3,"a"
+ 165              	 .align 2
+ 168              	LS_SW_3:
+ 169 0000 00800248 	 .word 1208123392
+ 170 0004 80       	 .byte -128
+ 171 0005 000000   	 .space 3
+ 172 0008 00000100 	 .word 65536
+ 173 000c 04       	 .byte 4
+ 174 000d 000000   	 .space 3
+ 175 0010 09       	 .byte 9
+ 176 0011 00       	 .byte 0
+ 177 0012 0000     	 .space 2
+ 178              	 .global LS_SW_2
+ 179              	 .section .rodata.LS_SW_2,"a"
+ 180              	 .align 2
+ 183              	LS_SW_2:
+ 184 0000 00800248 	 .word 1208123392
+ 185 0004 80       	 .byte -128
+ 186 0005 000000   	 .space 3
+ 187 0008 00000100 	 .word 65536
+ 188 000c 04       	 .byte 4
+ 189 000d 000000   	 .space 3
+ 190 0010 0A       	 .byte 10
+ 191 0011 00       	 .byte 0
+ 192 0012 0000     	 .space 2
+ 193              	 .global LS_SW_1
+ 194              	 .section .rodata.LS_SW_1,"a"
+ 195              	 .align 2
+ 198              	LS_SW_1:
+ 199 0000 00800248 	 .word 1208123392
+ 200 0004 80       	 .byte -128
+ 201 0005 000000   	 .space 3
+ 202 0008 00000100 	 .word 65536
+ 203 000c 04       	 .byte 4
+ 204 000d 000000   	 .space 3
+ 205 0010 00       	 .byte 0
+ 206 0011 00       	 .byte 0
+ 207 0012 0000     	 .space 2
+ 208              	 .global LED_SW_NRES
+ 209              	 .section .rodata.LED_SW_NRES,"a"
+ 210              	 .align 2
+ 213              	LED_SW_NRES:
+ 214 0000 00800248 	 .word 1208123392
+ 215 0004 80       	 .byte -128
+ 216 0005 000000   	 .space 3
+ 217 0008 00000100 	 .word 65536
+ 218 000c 04       	 .byte 4
+ 219 000d 000000   	 .space 3
+ 220 0010 0E       	 .byte 14
+ 221 0011 00       	 .byte 0
+ 222 0012 0000     	 .space 2
+ 223              	 .global LED_SW_8
+ 224              	 .section .rodata.LED_SW_8,"a"
+ 225              	 .align 2
+ 228              	LED_SW_8:
+ 229 0000 00840248 	 .word 1208124416
+ 230 0004 80       	 .byte -128
+ 231 0005 000000   	 .space 3
+ 232 0008 00000100 	 .word 65536
+ 233 000c 04       	 .byte 4
+ 234 000d 000000   	 .space 3
+ 235 0010 07       	 .byte 7
+ 236 0011 00       	 .byte 0
+ 237 0012 0000     	 .space 2
+ 238              	 .global LED_SW_7
+ 239              	 .section .rodata.LED_SW_7,"a"
+ 240              	 .align 2
+ 243              	LED_SW_7:
+ 244 0000 00840248 	 .word 1208124416
+ 245 0004 80       	 .byte -128
+ 246 0005 000000   	 .space 3
+ 247 0008 00000100 	 .word 65536
+ 248 000c 04       	 .byte 4
+ 249 000d 000000   	 .space 3
+ 250 0010 06       	 .byte 6
+ 251 0011 00       	 .byte 0
+ 252 0012 0000     	 .space 2
+ 253              	 .global LED_SW_6
+ 254              	 .section .rodata.LED_SW_6,"a"
+ 255              	 .align 2
+ 258              	LED_SW_6:
+ 259 0000 00840248 	 .word 1208124416
+ 260 0004 80       	 .byte -128
+ 261 0005 000000   	 .space 3
+ 262 0008 00000100 	 .word 65536
+ 263 000c 04       	 .byte 4
+ 264 000d 000000   	 .space 3
+ 265 0010 05       	 .byte 5
+ 266 0011 00       	 .byte 0
+ 267 0012 0000     	 .space 2
+ 268              	 .global LED_SW_5
+ 269              	 .section .rodata.LED_SW_5,"a"
+ 270              	 .align 2
+ 273              	LED_SW_5:
+ 274 0000 00840248 	 .word 1208124416
+ 275 0004 80       	 .byte -128
+ 276 0005 000000   	 .space 3
+ 277 0008 00000100 	 .word 65536
+ 278 000c 04       	 .byte 4
+ 279 000d 000000   	 .space 3
+ 280 0010 04       	 .byte 4
+ 281 0011 00       	 .byte 0
+ 282 0012 0000     	 .space 2
+ 283              	 .global LED_SW_4
+ 284              	 .section .rodata.LED_SW_4,"a"
+ 285              	 .align 2
+ 288              	LED_SW_4:
+ 289 0000 00840248 	 .word 1208124416
+ 290 0004 80       	 .byte -128
+ 291 0005 000000   	 .space 3
+ 292 0008 00000100 	 .word 65536
+ 293 000c 04       	 .byte 4
+ 294 000d 000000   	 .space 3
+ 295 0010 03       	 .byte 3
+ 296 0011 00       	 .byte 0
+ 297 0012 0000     	 .space 2
+ 298              	 .global LED_SW_3
+ 299              	 .section .rodata.LED_SW_3,"a"
+ 300              	 .align 2
+ 303              	LED_SW_3:
+ 304 0000 00840248 	 .word 1208124416
+ 305 0004 80       	 .byte -128
+ 306 0005 000000   	 .space 3
+ 307 0008 00000100 	 .word 65536
+ 308 000c 04       	 .byte 4
+ 309 000d 000000   	 .space 3
+ 310 0010 02       	 .byte 2
+ 311 0011 00       	 .byte 0
+ 312 0012 0000     	 .space 2
+ 313              	 .global LED_SW_2
+ 314              	 .section .rodata.LED_SW_2,"a"
+ 315              	 .align 2
+ 318              	LED_SW_2:
+ 319 0000 00840248 	 .word 1208124416
+ 320 0004 80       	 .byte -128
+ 321 0005 000000   	 .space 3
+ 322 0008 00000100 	 .word 65536
+ 323 000c 04       	 .byte 4
+ 324 000d 000000   	 .space 3
+ 325 0010 01       	 .byte 1
+ 326 0011 00       	 .byte 0
+ 327 0012 0000     	 .space 2
+ 328              	 .global LED_SW_1
+ 329              	 .section .rodata.LED_SW_1,"a"
+ 330              	 .align 2
+ 333              	LED_SW_1:
+ 334 0000 00840248 	 .word 1208124416
+ 335 0004 80       	 .byte -128
+ 336 0005 000000   	 .space 3
+ 337 0008 00000100 	 .word 65536
+ 338 000c 04       	 .byte 4
+ 339 000d 000000   	 .space 3
+ 340 0010 00       	 .byte 0
+ 341 0011 00       	 .byte 0
+ 342 0012 0000     	 .space 2
+ 343              	 .global LED_POWER_EN2
+ 344              	 .section .rodata.LED_POWER_EN2,"a"
+ 345              	 .align 2
+ 348              	LED_POWER_EN2:
+ 349 0000 00800248 	 .word 1208123392
+ 350 0004 80       	 .byte -128
+ 351 0005 000000   	 .space 3
+ 352 0008 00000100 	 .word 65536
+ 353 000c 04       	 .byte 4
+ 354 000d 000000   	 .space 3
+ 355 0010 07       	 .byte 7
+ 356 0011 00       	 .byte 0
+ 357 0012 0000     	 .space 2
+ 358              	 .global LED_POWER_EN1
+ 359              	 .section .rodata.LED_POWER_EN1,"a"
+ 360              	 .align 2
+ 363              	LED_POWER_EN1:
+ 364 0000 00800248 	 .word 1208123392
+ 365 0004 80       	 .byte -128
+ 366 0005 000000   	 .space 3
+ 367 0008 00000100 	 .word 65536
+ 368 000c 04       	 .byte 4
+ 369 000d 000000   	 .space 3
+ 370 0010 06       	 .byte 6
+ 371 0011 00       	 .byte 0
+ 372 0012 0000     	 .space 2
+ 373              	 .global HS_SW_8
+ 374              	 .section .rodata.HS_SW_8,"a"
+ 375              	 .align 2
+ 378              	HS_SW_8:
+ 379 0000 00860248 	 .word 1208124928
+ 380 0004 80       	 .byte -128
+ 381 0005 000000   	 .space 3
+ 382 0008 00000100 	 .word 65536
+ 383 000c 04       	 .byte 4
+ 384 000d 000000   	 .space 3
+ 385 0010 02       	 .byte 2
+ 386 0011 00       	 .byte 0
+ 387 0012 0000     	 .space 2
+ 388              	 .global HS_SW_7
+ 389              	 .section .rodata.HS_SW_7,"a"
+ 390              	 .align 2
+ 393              	HS_SW_7:
+ 394 0000 00860248 	 .word 1208124928
+ 395 0004 80       	 .byte -128
+ 396 0005 000000   	 .space 3
+ 397 0008 00000100 	 .word 65536
+ 398 000c 04       	 .byte 4
+ 399 000d 000000   	 .space 3
+ 400 0010 01       	 .byte 1
+ 401 0011 00       	 .byte 0
+ 402 0012 0000     	 .space 2
+ 403              	 .global HS_SW_6
+ 404              	 .section .rodata.HS_SW_6,"a"
+ 405              	 .align 2
+ 408              	HS_SW_6:
+ 409 0000 00860248 	 .word 1208124928
+ 410 0004 80       	 .byte -128
+ 411 0005 000000   	 .space 3
+ 412 0008 00000100 	 .word 65536
+ 413 000c 04       	 .byte 4
+ 414 000d 000000   	 .space 3
+ 415 0010 00       	 .byte 0
+ 416 0011 00       	 .byte 0
+ 417 0012 0000     	 .space 2
+ 418              	 .global HS_SW_5
+ 419              	 .section .rodata.HS_SW_5,"a"
+ 420              	 .align 2
+ 423              	HS_SW_5:
+ 424 0000 00810248 	 .word 1208123648
+ 425 0004 80       	 .byte -128
+ 426 0005 000000   	 .space 3
+ 427 0008 00000100 	 .word 65536
+ 428 000c 04       	 .byte 4
+ 429 000d 000000   	 .space 3
+ 430 0010 0E       	 .byte 14
+ 431 0011 00       	 .byte 0
+ 432 0012 0000     	 .space 2
+ 433              	 .global HS_SW_4
+ 434              	 .section .rodata.HS_SW_4,"a"
+ 435              	 .align 2
+ 438              	HS_SW_4:
+ 439 0000 00810248 	 .word 1208123648
+ 440 0004 80       	 .byte -128
+ 441 0005 000000   	 .space 3
+ 442 0008 00000100 	 .word 65536
+ 443 000c 04       	 .byte 4
+ 444 000d 000000   	 .space 3
+ 445 0010 0D       	 .byte 13
+ 446 0011 00       	 .byte 0
+ 447 0012 0000     	 .space 2
+ 448              	 .global HS_SW_3
+ 449              	 .section .rodata.HS_SW_3,"a"
+ 450              	 .align 2
+ 453              	HS_SW_3:
+ 454 0000 00810248 	 .word 1208123648
+ 455 0004 80       	 .byte -128
+ 456 0005 000000   	 .space 3
+ 457 0008 00000100 	 .word 65536
+ 458 000c 04       	 .byte 4
+ 459 000d 000000   	 .space 3
+ 460 0010 0C       	 .byte 12
+ 461 0011 00       	 .byte 0
+ 462 0012 0000     	 .space 2
+ 463              	 .global LS_SW_NRES
+ 464              	 .section .rodata.LS_SW_NRES,"a"
+ 465              	 .align 2
+ 468              	LS_SW_NRES:
+ 469 0000 00800248 	 .word 1208123392
+ 470 0004 80       	 .byte -128
+ 471 0005 000000   	 .space 3
+ 472 0008 00000100 	 .word 65536
+ 473 000c 04       	 .byte 4
+ 474 000d 000000   	 .space 3
+ 475 0010 0F       	 .byte 15
+ 476 0011 00       	 .byte 0
+ 477 0012 0000     	 .space 2
+ 478              	 .global MOTOR_FAULT
+ 479              	 .section .rodata.MOTOR_FAULT,"a"
+ 480              	 .align 2
+ 483              	MOTOR_FAULT:
+ 484 0000 008F0248 	 .word 1208127232
+ 485 0004 00       	 .byte 0
+ 486 0005 00000000 	 .space 11
+ 486      00000000 
+ 486      000000
+ 487 0010 0E       	 .byte 14
+ 488 0011 00       	 .byte 0
+ 489 0012 0000     	 .space 2
+ 490              	 .global POWER_SWITCH
+ 491              	 .section .rodata.POWER_SWITCH,"a"
+ 492              	 .align 2
+ 495              	POWER_SWITCH:
+ 496 0000 00810248 	 .word 1208123648
+ 497 0004 80       	 .byte -128
+ 498 0005 000000   	 .space 3
+ 499 0008 00000100 	 .word 65536
+ 500 000c 04       	 .byte 4
+ 501 000d 000000   	 .space 3
+ 502 0010 06       	 .byte 6
+ 503 0011 00       	 .byte 0
+ 504 0012 0000     	 .space 2
+ 505              	 .global TRANS_OUT
+ 506              	 .section .rodata.TRANS_OUT,"a"
+ 507              	 .align 2
+ 510              	TRANS_OUT:
+ 511 0000 00810248 	 .word 1208123648
+ 512 0004 80       	 .byte -128
+ 513 0005 000000   	 .space 3
+ 514 0008 00000100 	 .word 65536
+ 515 000c 04       	 .byte 4
+ 516 000d 000000   	 .space 3
+ 517 0010 0F       	 .byte 15
+ 518 0011 00       	 .byte 0
+ 519 0012 0000     	 .space 2
+ 520              	 .text
+ 521              	.Letext0:
+ 522              	 .file 1 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 523              	 .file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 524              	 .file 3 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc_gpio.h"
+ 525              	 .file 4 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 526              	 .file 5 "../Dave/Generated/DIGITAL_IO/digital_io.h"
+ 527              	 .file 6 "../Dave/Generated/DIGITAL_IO/digital_io_extern.h"
+ 528              	 .file 7 "../Dave/Generated/DIGITAL_IO/digital_io_conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 digital_io_conf.c
+    {standard input}:21     .rodata.SERVICE_BUT:00000000 SERVICE_BUT
+    {standard input}:18     .rodata.SERVICE_BUT:00000000 $d
+    {standard input}:33     .rodata.STATUS_LED_G:00000000 STATUS_LED_G
+    {standard input}:30     .rodata.STATUS_LED_G:00000000 $d
+    {standard input}:48     .rodata.STATUS_LED_Y:00000000 STATUS_LED_Y
+    {standard input}:45     .rodata.STATUS_LED_Y:00000000 $d
+    {standard input}:63     .rodata.STATUS_LED_R:00000000 STATUS_LED_R
+    {standard input}:60     .rodata.STATUS_LED_R:00000000 $d
+    {standard input}:78     .rodata.DI_NPN_EN:00000000 DI_NPN_EN
+    {standard input}:75     .rodata.DI_NPN_EN:00000000 $d
+    {standard input}:93     .rodata.DI_PNP_EN:00000000 DI_PNP_EN
+    {standard input}:90     .rodata.DI_PNP_EN:00000000 $d
+    {standard input}:108    .rodata.GROUP_IN_EN:00000000 GROUP_IN_EN
+    {standard input}:105    .rodata.GROUP_IN_EN:00000000 $d
+    {standard input}:123    .rodata.HS_SW_1:00000000 HS_SW_1
+    {standard input}:120    .rodata.HS_SW_1:00000000 $d
+    {standard input}:138    .rodata.HS_SW_2:00000000 HS_SW_2
+    {standard input}:135    .rodata.HS_SW_2:00000000 $d
+    {standard input}:153    .rodata.LS_SW_4:00000000 LS_SW_4
+    {standard input}:150    .rodata.LS_SW_4:00000000 $d
+    {standard input}:168    .rodata.LS_SW_3:00000000 LS_SW_3
+    {standard input}:165    .rodata.LS_SW_3:00000000 $d
+    {standard input}:183    .rodata.LS_SW_2:00000000 LS_SW_2
+    {standard input}:180    .rodata.LS_SW_2:00000000 $d
+    {standard input}:198    .rodata.LS_SW_1:00000000 LS_SW_1
+    {standard input}:195    .rodata.LS_SW_1:00000000 $d
+    {standard input}:213    .rodata.LED_SW_NRES:00000000 LED_SW_NRES
+    {standard input}:210    .rodata.LED_SW_NRES:00000000 $d
+    {standard input}:228    .rodata.LED_SW_8:00000000 LED_SW_8
+    {standard input}:225    .rodata.LED_SW_8:00000000 $d
+    {standard input}:243    .rodata.LED_SW_7:00000000 LED_SW_7
+    {standard input}:240    .rodata.LED_SW_7:00000000 $d
+    {standard input}:258    .rodata.LED_SW_6:00000000 LED_SW_6
+    {standard input}:255    .rodata.LED_SW_6:00000000 $d
+    {standard input}:273    .rodata.LED_SW_5:00000000 LED_SW_5
+    {standard input}:270    .rodata.LED_SW_5:00000000 $d
+    {standard input}:288    .rodata.LED_SW_4:00000000 LED_SW_4
+    {standard input}:285    .rodata.LED_SW_4:00000000 $d
+    {standard input}:303    .rodata.LED_SW_3:00000000 LED_SW_3
+    {standard input}:300    .rodata.LED_SW_3:00000000 $d
+    {standard input}:318    .rodata.LED_SW_2:00000000 LED_SW_2
+    {standard input}:315    .rodata.LED_SW_2:00000000 $d
+    {standard input}:333    .rodata.LED_SW_1:00000000 LED_SW_1
+    {standard input}:330    .rodata.LED_SW_1:00000000 $d
+    {standard input}:348    .rodata.LED_POWER_EN2:00000000 LED_POWER_EN2
+    {standard input}:345    .rodata.LED_POWER_EN2:00000000 $d
+    {standard input}:363    .rodata.LED_POWER_EN1:00000000 LED_POWER_EN1
+    {standard input}:360    .rodata.LED_POWER_EN1:00000000 $d
+    {standard input}:378    .rodata.HS_SW_8:00000000 HS_SW_8
+    {standard input}:375    .rodata.HS_SW_8:00000000 $d
+    {standard input}:393    .rodata.HS_SW_7:00000000 HS_SW_7
+    {standard input}:390    .rodata.HS_SW_7:00000000 $d
+    {standard input}:408    .rodata.HS_SW_6:00000000 HS_SW_6
+    {standard input}:405    .rodata.HS_SW_6:00000000 $d
+    {standard input}:423    .rodata.HS_SW_5:00000000 HS_SW_5
+    {standard input}:420    .rodata.HS_SW_5:00000000 $d
+    {standard input}:438    .rodata.HS_SW_4:00000000 HS_SW_4
+    {standard input}:435    .rodata.HS_SW_4:00000000 $d
+    {standard input}:453    .rodata.HS_SW_3:00000000 HS_SW_3
+    {standard input}:450    .rodata.HS_SW_3:00000000 $d
+    {standard input}:468    .rodata.LS_SW_NRES:00000000 LS_SW_NRES
+    {standard input}:465    .rodata.LS_SW_NRES:00000000 $d
+    {standard input}:483    .rodata.MOTOR_FAULT:00000000 MOTOR_FAULT
+    {standard input}:480    .rodata.MOTOR_FAULT:00000000 $d
+    {standard input}:495    .rodata.POWER_SWITCH:00000000 POWER_SWITCH
+    {standard input}:492    .rodata.POWER_SWITCH:00000000 $d
+    {standard input}:510    .rodata.TRANS_OUT:00000000 TRANS_OUT
+    {standard input}:507    .rodata.TRANS_OUT:00000000 $d
+
+NO UNDEFINED SYMBOLS

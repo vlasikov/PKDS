@@ -1,0 +1,330 @@
+   1              	 .cpu cortex-m4
+   2              	 .eabi_attribute 27,1
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,1
+  11              	 .eabi_attribute 18,4
+  12              	 .file "main_alg.c"
+  13              	 .text
+  14              	.Ltext0:
+  15              	 .cfi_sections .debug_frame
+  16              	 .global OpenTime
+  17              	 .section .bss.OpenTime,"aw",%nobits
+  18              	 .align 1
+  21              	OpenTime:
+  22 0000 0000     	 .space 2
+  23              	 .global CloseTime
+  24              	 .section .bss.CloseTime,"aw",%nobits
+  25              	 .align 1
+  28              	CloseTime:
+  29 0000 0000     	 .space 2
+  30              	 .global Can1TxData1
+  31              	 .section .bss.Can1TxData1,"aw",%nobits
+  32              	 .align 2
+  35              	Can1TxData1:
+  36 0000 00000000 	 .space 8
+  36      00000000 
+  37              	 .global Can1TxData2
+  38              	 .section .bss.Can1TxData2,"aw",%nobits
+  39              	 .align 2
+  42              	Can1TxData2:
+  43 0000 00000000 	 .space 8
+  43      00000000 
+  44              	 .global Can2TxData1
+  45              	 .section .bss.Can2TxData1,"aw",%nobits
+  46              	 .align 2
+  49              	Can2TxData1:
+  50 0000 00000000 	 .space 8
+  50      00000000 
+  51              	 .global Can2TxData2
+  52              	 .section .bss.Can2TxData2,"aw",%nobits
+  53              	 .align 2
+  56              	Can2TxData2:
+  57 0000 00000000 	 .space 8
+  57      00000000 
+  58              	 .global Can2TxData3
+  59              	 .section .bss.Can2TxData3,"aw",%nobits
+  60              	 .align 2
+  63              	Can2TxData3:
+  64 0000 00000000 	 .space 8
+  64      00000000 
+  65              	 .global MainTimer
+  66              	 .section .bss.MainTimer,"aw",%nobits
+  67              	 .align 2
+  70              	MainTimer:
+  71 0000 00000000 	 .space 4
+  72              	 .global SaveTimer
+  73              	 .section .bss.SaveTimer,"aw",%nobits
+  74              	 .align 2
+  77              	SaveTimer:
+  78 0000 00000000 	 .space 4
+  79              	 .global MainState
+  80              	 .section .bss.MainState,"aw",%nobits
+  81              	 .align 2
+  84              	MainState:
+  85 0000 00000000 	 .space 4
+  86              	 .global HomingDone
+  87              	 .section .bss.HomingDone,"aw",%nobits
+  88              	 .align 2
+  91              	HomingDone:
+  92 0000 00000000 	 .space 4
+  93              	 .global OPEN_DIR
+  94              	 .section .data.OPEN_DIR,"aw"
+  95              	 .align 2
+  98              	OPEN_DIR:
+  99 0000 FFFFFFFF 	 .word -1
+ 100              	 .global PassMemo
+ 101              	 .section .bss.PassMemo,"aw",%nobits
+ 102              	 .align 2
+ 105              	PassMemo:
+ 106 0000 00000000 	 .space 4
+ 107              	 .global FromCan
+ 108              	 .section .bss.FromCan,"aw",%nobits
+ 109              	 .align 2
+ 112              	FromCan:
+ 113 0000 00000000 	 .space 4
+ 114              	 .global serv_from_but
+ 115              	 .section .bss.serv_from_but,"aw",%nobits
+ 116              	 .align 2
+ 119              	serv_from_but:
+ 120 0000 00000000 	 .space 4
+ 121              	 .section .text.MainAlgInit,"ax",%progbits
+ 122              	 .align 1
+ 123              	 .global MainAlgInit
+ 124              	 .arch armv7e-m
+ 125              	 .syntax unified
+ 126              	 .thumb
+ 127              	 .thumb_func
+ 128              	 .fpu fpv4-sp-d16
+ 130              	MainAlgInit:
+ 131              	.LFB416:
+ 132              	 .file 1 "../MainAlg/main_alg.c"
+   1:../MainAlg/main_alg.c **** /*
+   2:../MainAlg/main_alg.c ****  * MainAlg.c
+   3:../MainAlg/main_alg.c ****  *
+   4:../MainAlg/main_alg.c ****  *  Created on: Mar 2, 2021
+   5:../MainAlg/main_alg.c ****  *      Author: kendor
+   6:../MainAlg/main_alg.c ****  */
+   7:../MainAlg/main_alg.c **** 
+   8:../MainAlg/main_alg.c **** #include <DAVE.h>                 //Declarations from DAVE Code Generation (includes SFR declaratio
+   9:../MainAlg/main_alg.c **** #include "xmc_common.h"
+  10:../MainAlg/main_alg.c **** #include "MainAlg/main_alg.h"
+  11:../MainAlg/main_alg.c **** #include "MainAlg/door_periph.h"
+  12:../MainAlg/main_alg.c **** //#include "MotorLib/bldc_scalar_user_interface.h"
+  13:../MainAlg/main_alg.c **** #include "MotorLib/motor.h"
+  14:../MainAlg/main_alg.c **** #include "stdlib.h"
+  15:../MainAlg/main_alg.c **** #include <MainAlg/presets.h>
+  16:../MainAlg/main_alg.c **** #include <MainAlg/retain_xmc4.h>
+  17:../MainAlg/main_alg.c **** #include <MainAlg/moving.h>
+  18:../MainAlg/main_alg.c **** #include <MainAlg/Peripherials/Buzzer.h>
+  19:../MainAlg/main_alg.c **** #include "MainAlg/Peripherials/LedRubber.h"
+  20:../MainAlg/main_alg.c **** #include "MainAlg/Peripherials/Scheme.h"
+  21:../MainAlg/main_alg.c **** 
+  22:../MainAlg/main_alg.c **** 
+  23:../MainAlg/main_alg.c **** #define FILT_NUM 16
+  24:../MainAlg/main_alg.c **** 
+  25:../MainAlg/main_alg.c **** uint16_t OpenTime = 0;
+  26:../MainAlg/main_alg.c **** uint16_t CloseTime = 0;
+  27:../MainAlg/main_alg.c **** 
+  28:../MainAlg/main_alg.c **** 
+  29:../MainAlg/main_alg.c **** uint8_t Can1TxData1[8];
+  30:../MainAlg/main_alg.c **** uint8_t Can1TxData2[8];
+  31:../MainAlg/main_alg.c **** uint8_t Can2TxData1[8];
+  32:../MainAlg/main_alg.c **** uint8_t Can2TxData2[8];
+  33:../MainAlg/main_alg.c **** uint8_t Can2TxData3[8];
+  34:../MainAlg/main_alg.c **** 
+  35:../MainAlg/main_alg.c **** extern uint8_t Can1Rx1Data[8];
+  36:../MainAlg/main_alg.c **** extern uint8_t Can1Rx2Data[8];
+  37:../MainAlg/main_alg.c **** extern uint8_t Can1Rx3Data[8];
+  38:../MainAlg/main_alg.c **** 
+  39:../MainAlg/main_alg.c **** extern int32_t ServiceMode;
+  40:../MainAlg/main_alg.c **** 
+  41:../MainAlg/main_alg.c **** 
+  42:../MainAlg/main_alg.c **** int32_t MainTimer = 0;
+  43:../MainAlg/main_alg.c **** int32_t SaveTimer = 0;
+  44:../MainAlg/main_alg.c **** 
+  45:../MainAlg/main_alg.c **** int32_t MainState = 0;
+  46:../MainAlg/main_alg.c **** int32_t HomingDone = 0;
+  47:../MainAlg/main_alg.c **** 
+  48:../MainAlg/main_alg.c **** int32_t  OPEN_DIR = -1;
+  49:../MainAlg/main_alg.c **** 
+  50:../MainAlg/main_alg.c **** int32_t PassMemo = 0;
+  51:../MainAlg/main_alg.c **** 
+  52:../MainAlg/main_alg.c **** extern int32_t ExtCanOnline;
+  53:../MainAlg/main_alg.c **** 
+  54:../MainAlg/main_alg.c **** int32_t FromCan = 0;
+  55:../MainAlg/main_alg.c **** 
+  56:../MainAlg/main_alg.c **** 
+  57:../MainAlg/main_alg.c **** int32_t serv_from_but = 0;
+  58:../MainAlg/main_alg.c **** 
+  59:../MainAlg/main_alg.c **** 
+  60:../MainAlg/main_alg.c **** 
+  61:../MainAlg/main_alg.c **** void MainAlgInit(void)
+  62:../MainAlg/main_alg.c **** {
+ 133              	 .loc 1 62 1
+ 134              	 .cfi_startproc
+ 135              	 
+ 136              	 
+ 137 0000 80B5     	 push {r7,lr}
+ 138              	.LCFI0:
+ 139              	 .cfi_def_cfa_offset 8
+ 140              	 .cfi_offset 7,-8
+ 141              	 .cfi_offset 14,-4
+ 142 0002 00AF     	 add r7,sp,#0
+ 143              	.LCFI1:
+ 144              	 .cfi_def_cfa_register 7
+  63:../MainAlg/main_alg.c **** 
+  64:../MainAlg/main_alg.c **** 	DoorPeriphInit();
+ 145              	 .loc 1 64 2
+ 146 0004 FFF7FEFF 	 bl DoorPeriphInit
+  65:../MainAlg/main_alg.c **** 	MotorInit();
+ 147              	 .loc 1 65 2
+ 148 0008 FFF7FEFF 	 bl MotorInit
+  66:../MainAlg/main_alg.c **** 
+  67:../MainAlg/main_alg.c **** 	MainTimer = SYSTIMER_CreateTimer((MAIN_TIMER_TIME_MS * 1000), SYSTIMER_MODE_PERIODIC, MainProc, NU
+ 149              	 .loc 1 67 14
+ 150 000c 0023     	 movs r3,#0
+ 151 000e 0B4A     	 ldr r2,.L2
+ 152 0010 0121     	 movs r1,#1
+ 153 0012 42F21070 	 movw r0,#10000
+ 154 0016 FFF7FEFF 	 bl SYSTIMER_CreateTimer
+ 155 001a 0346     	 mov r3,r0
+ 156 001c 1A46     	 mov r2,r3
+ 157              	 .loc 1 67 12
+ 158 001e 084B     	 ldr r3,.L2+4
+ 159 0020 1A60     	 str r2,[r3]
+  68:../MainAlg/main_alg.c **** 	SYSTIMER_StartTimer(MainTimer);
+ 160              	 .loc 1 68 2
+ 161 0022 074B     	 ldr r3,.L2+4
+ 162 0024 1B68     	 ldr r3,[r3]
+ 163 0026 1846     	 mov r0,r3
+ 164 0028 FFF7FEFF 	 bl SYSTIMER_StartTimer
+  69:../MainAlg/main_alg.c **** 
+  70:../MainAlg/main_alg.c **** //	SaveTimer = SYSTIMER_CreateTimer((1000*1000), SYSTIMER_MODE_PERIODIC, SaveProc, NULL);
+  71:../MainAlg/main_alg.c **** //	SYSTIMER_StartTimer(SaveTimer);
+  72:../MainAlg/main_alg.c **** 
+  73:../MainAlg/main_alg.c **** 	OPEN_DIR = -Presets.CLOSE_DIR;
+ 165              	 .loc 1 73 21
+ 166 002c 054B     	 ldr r3,.L2+8
+ 167 002e 1B68     	 ldr r3,[r3]
+ 168              	 .loc 1 73 13
+ 169 0030 5B42     	 rsbs r3,r3,#0
+ 170              	 .loc 1 73 11
+ 171 0032 054A     	 ldr r2,.L2+12
+ 172 0034 1360     	 str r3,[r2]
+  74:../MainAlg/main_alg.c **** 
+  75:../MainAlg/main_alg.c **** }
+ 173              	 .loc 1 75 1
+ 174 0036 00BF     	 nop
+ 175 0038 80BD     	 pop {r7,pc}
+ 176              	.L3:
+ 177 003a 00BF     	 .align 2
+ 178              	.L2:
+ 179 003c 00000000 	 .word MainProc
+ 180 0040 00000000 	 .word MainTimer
+ 181 0044 00000000 	 .word Presets
+ 182 0048 00000000 	 .word OPEN_DIR
+ 183              	 .cfi_endproc
+ 184              	.LFE416:
+ 186              	 .section .text.MainProc,"ax",%progbits
+ 187              	 .align 1
+ 188              	 .global MainProc
+ 189              	 .syntax unified
+ 190              	 .thumb
+ 191              	 .thumb_func
+ 192              	 .fpu fpv4-sp-d16
+ 194              	MainProc:
+ 195              	.LFB417:
+  76:../MainAlg/main_alg.c **** 
+  77:../MainAlg/main_alg.c **** void MainProc (void *args)
+  78:../MainAlg/main_alg.c **** {
+ 196              	 .loc 1 78 1
+ 197              	 .cfi_startproc
+ 198              	 
+ 199              	 
+ 200              	 
+ 201 0000 80B4     	 push {r7}
+ 202              	.LCFI2:
+ 203              	 .cfi_def_cfa_offset 4
+ 204              	 .cfi_offset 7,-4
+ 205 0002 83B0     	 sub sp,sp,#12
+ 206              	.LCFI3:
+ 207              	 .cfi_def_cfa_offset 16
+ 208 0004 00AF     	 add r7,sp,#0
+ 209              	.LCFI4:
+ 210              	 .cfi_def_cfa_register 7
+ 211 0006 7860     	 str r0,[r7,#4]
+  79:../MainAlg/main_alg.c **** 
+  80:../MainAlg/main_alg.c **** }
+ 212              	 .loc 1 80 1
+ 213 0008 00BF     	 nop
+ 214 000a 0C37     	 adds r7,r7,#12
+ 215              	.LCFI5:
+ 216              	 .cfi_def_cfa_offset 4
+ 217 000c BD46     	 mov sp,r7
+ 218              	.LCFI6:
+ 219              	 .cfi_def_cfa_register 13
+ 220              	 
+ 221 000e 5DF8047B 	 ldr r7,[sp],#4
+ 222              	.LCFI7:
+ 223              	 .cfi_restore 7
+ 224              	 .cfi_def_cfa_offset 0
+ 225 0012 7047     	 bx lr
+ 226              	 .cfi_endproc
+ 227              	.LFE417:
+ 229              	 .text
+ 230              	.Letext0:
+ 231              	 .file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 232              	 .file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 233              	 .file 4 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/MainAlg/main_alg.h"
+ 234              	 .file 5 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/MainAlg/presets.h"
+ 235              	 .file 6 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Dave/Generated/SYSTIMER/systimer.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 main_alg.c
+    {standard input}:21     .bss.OpenTime:00000000 OpenTime
+    {standard input}:18     .bss.OpenTime:00000000 $d
+    {standard input}:28     .bss.CloseTime:00000000 CloseTime
+    {standard input}:25     .bss.CloseTime:00000000 $d
+    {standard input}:35     .bss.Can1TxData1:00000000 Can1TxData1
+    {standard input}:32     .bss.Can1TxData1:00000000 $d
+    {standard input}:42     .bss.Can1TxData2:00000000 Can1TxData2
+    {standard input}:39     .bss.Can1TxData2:00000000 $d
+    {standard input}:49     .bss.Can2TxData1:00000000 Can2TxData1
+    {standard input}:46     .bss.Can2TxData1:00000000 $d
+    {standard input}:56     .bss.Can2TxData2:00000000 Can2TxData2
+    {standard input}:53     .bss.Can2TxData2:00000000 $d
+    {standard input}:63     .bss.Can2TxData3:00000000 Can2TxData3
+    {standard input}:60     .bss.Can2TxData3:00000000 $d
+    {standard input}:70     .bss.MainTimer:00000000 MainTimer
+    {standard input}:67     .bss.MainTimer:00000000 $d
+    {standard input}:77     .bss.SaveTimer:00000000 SaveTimer
+    {standard input}:74     .bss.SaveTimer:00000000 $d
+    {standard input}:84     .bss.MainState:00000000 MainState
+    {standard input}:81     .bss.MainState:00000000 $d
+    {standard input}:91     .bss.HomingDone:00000000 HomingDone
+    {standard input}:88     .bss.HomingDone:00000000 $d
+    {standard input}:98     .data.OPEN_DIR:00000000 OPEN_DIR
+    {standard input}:95     .data.OPEN_DIR:00000000 $d
+    {standard input}:105    .bss.PassMemo:00000000 PassMemo
+    {standard input}:102    .bss.PassMemo:00000000 $d
+    {standard input}:112    .bss.FromCan:00000000 FromCan
+    {standard input}:109    .bss.FromCan:00000000 $d
+    {standard input}:119    .bss.serv_from_but:00000000 serv_from_but
+    {standard input}:116    .bss.serv_from_but:00000000 $d
+    {standard input}:122    .text.MainAlgInit:00000000 $t
+    {standard input}:130    .text.MainAlgInit:00000000 MainAlgInit
+    {standard input}:179    .text.MainAlgInit:0000003c $d
+    {standard input}:194    .text.MainProc:00000000 MainProc
+    {standard input}:187    .text.MainProc:00000000 $t
+
+UNDEFINED SYMBOLS
+DoorPeriphInit
+MotorInit
+SYSTIMER_CreateTimer
+SYSTIMER_StartTimer
+Presets

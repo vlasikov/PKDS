@@ -1,0 +1,494 @@
+   1              	 .cpu cortex-m4
+   2              	 .eabi_attribute 27,1
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,1
+  11              	 .eabi_attribute 18,4
+  12              	 .file "gpio.c"
+  13              	 .text
+  14              	.Ltext0:
+  15              	 .cfi_sections .debug_frame
+  16              	 .global Motor0_BLDC_SCALAR_GPIO_PhU_High_Config
+  17              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_PhU_High_Config,"a"
+  18              	 .align 2
+  21              	Motor0_BLDC_SCALAR_GPIO_PhU_High_Config:
+  22 0000 98       	 .byte -104
+  23 0001 000000   	 .space 3
+  24 0004 00000100 	 .word 65536
+  25 0008 00       	 .byte 0
+  26 0009 000000   	 .space 3
+  27              	 .global Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config
+  28              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config,"a"
+  29              	 .align 2
+  32              	Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config:
+  33 0000 98       	 .byte -104
+  34 0001 000000   	 .space 3
+  35 0004 00000100 	 .word 65536
+  36 0008 00       	 .byte 0
+  37 0009 000000   	 .space 3
+  38              	 .global Motor0_BLDC_SCALAR_GPIO_PhV_High_Config
+  39              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_PhV_High_Config,"a"
+  40              	 .align 2
+  43              	Motor0_BLDC_SCALAR_GPIO_PhV_High_Config:
+  44 0000 98       	 .byte -104
+  45 0001 000000   	 .space 3
+  46 0004 00000100 	 .word 65536
+  47 0008 00       	 .byte 0
+  48 0009 000000   	 .space 3
+  49              	 .global Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config
+  50              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config,"a"
+  51              	 .align 2
+  54              	Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config:
+  55 0000 98       	 .byte -104
+  56 0001 000000   	 .space 3
+  57 0004 00000100 	 .word 65536
+  58 0008 00       	 .byte 0
+  59 0009 000000   	 .space 3
+  60              	 .global Motor0_BLDC_SCALAR_GPIO_PhW_High_Config
+  61              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_PhW_High_Config,"a"
+  62              	 .align 2
+  65              	Motor0_BLDC_SCALAR_GPIO_PhW_High_Config:
+  66 0000 98       	 .byte -104
+  67 0001 000000   	 .space 3
+  68 0004 00000100 	 .word 65536
+  69 0008 00       	 .byte 0
+  70 0009 000000   	 .space 3
+  71              	 .global Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config
+  72              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config,"a"
+  73              	 .align 2
+  76              	Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config:
+  77 0000 98       	 .byte -104
+  78 0001 000000   	 .space 3
+  79 0004 00000100 	 .word 65536
+  80 0008 00       	 .byte 0
+  81 0009 000000   	 .space 3
+  82              	 .global Motor0_BLDC_SCALAR_GPIO_Hall_Config
+  83              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_Hall_Config,"a"
+  84              	 .align 2
+  87              	Motor0_BLDC_SCALAR_GPIO_Hall_Config:
+  88 0000 00       	 .byte 0
+  89 0001 000000   	 .space 3
+  90 0004 00000100 	 .word 65536
+  91 0008 00       	 .byte 0
+  92 0009 000000   	 .space 3
+  93              	 .global Motor0_BLDC_SCALAR_GPIO_PWM_Config
+  94              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_PWM_Config,"a"
+  95              	 .align 2
+  98              	Motor0_BLDC_SCALAR_GPIO_PWM_Config:
+  99 0000 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhU_High_Config
+ 100 0004 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config
+ 101 0008 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhV_High_Config
+ 102 000c 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config
+ 103 0010 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhW_High_Config
+ 104 0014 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config
+ 105              	 .global Motor0_BLDC_SCALAR_GPIO_Inverter_Config
+ 106              	 .section .rodata.Motor0_BLDC_SCALAR_GPIO_Inverter_Config,"a"
+ 107              	 .align 2
+ 110              	Motor0_BLDC_SCALAR_GPIO_Inverter_Config:
+ 111 0000 80       	 .byte -128
+ 112 0001 000000   	 .space 3
+ 113 0004 00000100 	 .word 65536
+ 114 0008 01       	 .byte 1
+ 115 0009 000000   	 .space 3
+ 116              	 .section .text.Motor0_BLDC_SCALAR_GPIO_PWM_Init,"ax",%progbits
+ 117              	 .align 1
+ 118              	 .global Motor0_BLDC_SCALAR_GPIO_PWM_Init
+ 119              	 .arch armv7e-m
+ 120              	 .syntax unified
+ 121              	 .thumb
+ 122              	 .thumb_func
+ 123              	 .fpu fpv4-sp-d16
+ 125              	Motor0_BLDC_SCALAR_GPIO_PWM_Init:
+ 126              	.LFB393:
+ 127              	 .file 1 "../MotorLib/MCUInit/gpio.c"
+   1:../MotorLib/MCUInit/gpio.c **** /**
+   2:../MotorLib/MCUInit/gpio.c ****  * @file gpio.c
+   3:../MotorLib/MCUInit/gpio.c ****  * @brief Input and output pins for BLDC motor control. \n
+   4:../MotorLib/MCUInit/gpio.c ****  * -# Input: 3 hall sensor pins and 1 trap pin
+   5:../MotorLib/MCUInit/gpio.c ****  * -# Output: 6 PWM output pins and 1 inverter enable pin
+   6:../MotorLib/MCUInit/gpio.c ****  * @date 2016-08-31
+   7:../MotorLib/MCUInit/gpio.c ****  *
+   8:../MotorLib/MCUInit/gpio.c ****  **************************************************************************************************
+   9:../MotorLib/MCUInit/gpio.c ****  * BLDC_SCALAR_CONTROL v1.0.2 - BLDC motor control using block commutation
+  10:../MotorLib/MCUInit/gpio.c ****  * Copyright (c) 2015-2016, Infineon Technologies AG
+  11:../MotorLib/MCUInit/gpio.c ****  * All rights reserved.
+  12:../MotorLib/MCUInit/gpio.c ****  *
+  13:../MotorLib/MCUInit/gpio.c ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  14:../MotorLib/MCUInit/gpio.c ****  * following conditions are met:
+  15:../MotorLib/MCUInit/gpio.c ****  *
+  16:../MotorLib/MCUInit/gpio.c ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  17:../MotorLib/MCUInit/gpio.c ****  *   disclaimer.
+  18:../MotorLib/MCUInit/gpio.c ****  *
+  19:../MotorLib/MCUInit/gpio.c ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  20:../MotorLib/MCUInit/gpio.c ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  21:../MotorLib/MCUInit/gpio.c ****  *
+  22:../MotorLib/MCUInit/gpio.c ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  23:../MotorLib/MCUInit/gpio.c ****  *   products derived from this software without specific prior written permission.
+  24:../MotorLib/MCUInit/gpio.c ****  *
+  25:../MotorLib/MCUInit/gpio.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  26:../MotorLib/MCUInit/gpio.c ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  27:../MotorLib/MCUInit/gpio.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  28:../MotorLib/MCUInit/gpio.c ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  29:../MotorLib/MCUInit/gpio.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  30:../MotorLib/MCUInit/gpio.c ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  31:../MotorLib/MCUInit/gpio.c ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  32:../MotorLib/MCUInit/gpio.c ****  *
+  33:../MotorLib/MCUInit/gpio.c ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  34:../MotorLib/MCUInit/gpio.c ****  * with Infineon Technologies AG (dave@infineon.com).
+  35:../MotorLib/MCUInit/gpio.c ****  **************************************************************************************************
+  36:../MotorLib/MCUInit/gpio.c ****  *
+  37:../MotorLib/MCUInit/gpio.c ****  * Change History
+  38:../MotorLib/MCUInit/gpio.c ****  * --------------
+  39:../MotorLib/MCUInit/gpio.c ****  *
+  40:../MotorLib/MCUInit/gpio.c ****  * 2016-08-31:
+  41:../MotorLib/MCUInit/gpio.c ****  *     - Initial version
+  42:../MotorLib/MCUInit/gpio.c ****  *
+  43:../MotorLib/MCUInit/gpio.c ****  * @endcond
+  44:../MotorLib/MCUInit/gpio.c ****  *
+  45:../MotorLib/MCUInit/gpio.c ****  */
+  46:../MotorLib/MCUInit/gpio.c **** 
+  47:../MotorLib/MCUInit/gpio.c **** /**************************************************************************************************
+  48:../MotorLib/MCUInit/gpio.c ****  * HEADER FILES
+  49:../MotorLib/MCUInit/gpio.c ****  **************************************************************************************************
+  50:../MotorLib/MCUInit/gpio.c **** 
+  51:../MotorLib/MCUInit/gpio.c **** #include "gpio.h"
+  52:../MotorLib/MCUInit/gpio.c **** 
+  53:../MotorLib/MCUInit/gpio.c **** /**************************************************************************************************
+  54:../MotorLib/MCUInit/gpio.c ****  * DATA STRUCTURES
+  55:../MotorLib/MCUInit/gpio.c ****  **************************************************************************************************
+  56:../MotorLib/MCUInit/gpio.c **** 
+  57:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for Phase U High Pin */
+  58:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_PhU_High_Config =
+  59:../MotorLib/MCUInit/gpio.c **** {
+  60:../MotorLib/MCUInit/gpio.c ****  .mode             = MOTOR0_BLDC_SCALAR_GPIO_PH_U_HS_MODE,
+  61:../MotorLib/MCUInit/gpio.c ****  .output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW,
+  62:../MotorLib/MCUInit/gpio.c ****  .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE
+  63:../MotorLib/MCUInit/gpio.c **** };
+  64:../MotorLib/MCUInit/gpio.c **** 
+  65:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for Phase U Low Pin */
+  66:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config =
+  67:../MotorLib/MCUInit/gpio.c **** {
+  68:../MotorLib/MCUInit/gpio.c ****  .mode             = MOTOR0_BLDC_SCALAR_GPIO_PH_U_LS_MODE,
+  69:../MotorLib/MCUInit/gpio.c ****  .output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW,
+  70:../MotorLib/MCUInit/gpio.c ****  .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE
+  71:../MotorLib/MCUInit/gpio.c **** };
+  72:../MotorLib/MCUInit/gpio.c **** 
+  73:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for Phase V High Pin */
+  74:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_PhV_High_Config =
+  75:../MotorLib/MCUInit/gpio.c **** {
+  76:../MotorLib/MCUInit/gpio.c ****  .mode             = MOTOR0_BLDC_SCALAR_GPIO_PH_V_HS_MODE,
+  77:../MotorLib/MCUInit/gpio.c ****  .output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW,
+  78:../MotorLib/MCUInit/gpio.c ****  .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE
+  79:../MotorLib/MCUInit/gpio.c **** };
+  80:../MotorLib/MCUInit/gpio.c **** 
+  81:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for Phase V Low Pin */
+  82:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config =
+  83:../MotorLib/MCUInit/gpio.c **** {
+  84:../MotorLib/MCUInit/gpio.c ****  .mode             = MOTOR0_BLDC_SCALAR_GPIO_PH_V_LS_MODE,
+  85:../MotorLib/MCUInit/gpio.c ****  .output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW,
+  86:../MotorLib/MCUInit/gpio.c ****  .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE
+  87:../MotorLib/MCUInit/gpio.c **** };
+  88:../MotorLib/MCUInit/gpio.c **** 
+  89:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for Phase W High Pin */
+  90:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_PhW_High_Config =
+  91:../MotorLib/MCUInit/gpio.c **** {
+  92:../MotorLib/MCUInit/gpio.c ****  .mode             = MOTOR0_BLDC_SCALAR_GPIO_PH_W_HS_MODE,
+  93:../MotorLib/MCUInit/gpio.c ****  .output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW,
+  94:../MotorLib/MCUInit/gpio.c ****  .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE
+  95:../MotorLib/MCUInit/gpio.c **** };
+  96:../MotorLib/MCUInit/gpio.c **** 
+  97:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for Phase W Low Pin */
+  98:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config =
+  99:../MotorLib/MCUInit/gpio.c **** {
+ 100:../MotorLib/MCUInit/gpio.c ****  .mode             = MOTOR0_BLDC_SCALAR_GPIO_PH_W_LS_MODE,
+ 101:../MotorLib/MCUInit/gpio.c ****  .output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW,
+ 102:../MotorLib/MCUInit/gpio.c ****  .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE
+ 103:../MotorLib/MCUInit/gpio.c **** };
+ 104:../MotorLib/MCUInit/gpio.c **** 
+ 105:../MotorLib/MCUInit/gpio.c **** #if (MOTOR0_BLDC_SCALAR_FEEDBACK == BLDC_SCALAR_3HALL)
+ 106:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for hall sensor input pins */
+ 107:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_Hall_Config  =
+ 108:../MotorLib/MCUInit/gpio.c **** {
+ 109:../MotorLib/MCUInit/gpio.c ****   .mode            = (XMC_GPIO_MODE_t)XMC_GPIO_MODE_INPUT_TRISTATE,
+ 110:../MotorLib/MCUInit/gpio.c ****   .output_level    = (XMC_GPIO_OUTPUT_LEVEL_t)XMC_GPIO_OUTPUT_LEVEL_LOW,
+ 111:../MotorLib/MCUInit/gpio.c ****   .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE
+ 112:../MotorLib/MCUInit/gpio.c **** };
+ 113:../MotorLib/MCUInit/gpio.c **** #endif
+ 114:../MotorLib/MCUInit/gpio.c **** 
+ 115:../MotorLib/MCUInit/gpio.c **** /** GPIO PWM structure, hold the address of all the PWM pin objects*/
+ 116:../MotorLib/MCUInit/gpio.c **** const GPIO_PWM_INIT_t Motor0_BLDC_SCALAR_GPIO_PWM_Config =
+ 117:../MotorLib/MCUInit/gpio.c **** {
+ 118:../MotorLib/MCUInit/gpio.c ****   .PhUHighpin_Config = &Motor0_BLDC_SCALAR_GPIO_PhU_High_Config,
+ 119:../MotorLib/MCUInit/gpio.c ****   .PhULowpin_Config  = &Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config,
+ 120:../MotorLib/MCUInit/gpio.c ****   .PhVHighpin_Config = &Motor0_BLDC_SCALAR_GPIO_PhV_High_Config,
+ 121:../MotorLib/MCUInit/gpio.c ****   .PhVLowpin_Config  = &Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config,
+ 122:../MotorLib/MCUInit/gpio.c ****   .PhWHighpin_Config = &Motor0_BLDC_SCALAR_GPIO_PhW_High_Config,
+ 123:../MotorLib/MCUInit/gpio.c ****   .PhWLowpin_Config  = &Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config
+ 124:../MotorLib/MCUInit/gpio.c **** };
+ 125:../MotorLib/MCUInit/gpio.c **** 
+ 126:../MotorLib/MCUInit/gpio.c **** 
+ 127:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for Inverter enable Pin */
+ 128:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_Inverter_Config =
+ 129:../MotorLib/MCUInit/gpio.c **** {
+ 130:../MotorLib/MCUInit/gpio.c ****  .mode             = XMC_GPIO_MODE_OUTPUT_PUSH_PULL,
+ 131:../MotorLib/MCUInit/gpio.c ****  .output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW,
+ 132:../MotorLib/MCUInit/gpio.c ****  .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_MEDIUM_EDGE
+ 133:../MotorLib/MCUInit/gpio.c **** };
+ 134:../MotorLib/MCUInit/gpio.c **** 
+ 135:../MotorLib/MCUInit/gpio.c **** #if(MOTOR0_BLDC_SCALAR_ENABLE_CTRAP == 1U)
+ 136:../MotorLib/MCUInit/gpio.c **** /** GPIO Init handle for Trap Pin */
+ 137:../MotorLib/MCUInit/gpio.c **** const XMC_GPIO_CONFIG_t Motor0_BLDC_SCALAR_GPIO_Trap_Config =
+ 138:../MotorLib/MCUInit/gpio.c **** {
+ 139:../MotorLib/MCUInit/gpio.c ****  .mode             = XMC_GPIO_MODE_INPUT_TRISTATE,
+ 140:../MotorLib/MCUInit/gpio.c ****  .output_level     = XMC_GPIO_OUTPUT_LEVEL_LOW,
+ 141:../MotorLib/MCUInit/gpio.c ****  .output_strength = (XMC_GPIO_OUTPUT_STRENGTH_t)XMC_GPIO_OUTPUT_STRENGTH_STRONG_SHARP_EDGE
+ 142:../MotorLib/MCUInit/gpio.c **** };
+ 143:../MotorLib/MCUInit/gpio.c **** #endif
+ 144:../MotorLib/MCUInit/gpio.c **** 
+ 145:../MotorLib/MCUInit/gpio.c **** /**************************************************************************************************
+ 146:../MotorLib/MCUInit/gpio.c ****  * APIs
+ 147:../MotorLib/MCUInit/gpio.c ****  **************************************************************************************************
+ 148:../MotorLib/MCUInit/gpio.c **** /*
+ 149:../MotorLib/MCUInit/gpio.c ****  * @param None <br>
+ 150:../MotorLib/MCUInit/gpio.c ****  * @return None <br>
+ 151:../MotorLib/MCUInit/gpio.c ****  *
+ 152:../MotorLib/MCUInit/gpio.c ****  * \par<b>Description:</b><br>
+ 153:../MotorLib/MCUInit/gpio.c ****  * Configures GPIO as output pins of CCU8 slices for PWM generation.
+ 154:../MotorLib/MCUInit/gpio.c ****  */
+ 155:../MotorLib/MCUInit/gpio.c **** void Motor0_BLDC_SCALAR_GPIO_PWM_Init(void)
+ 156:../MotorLib/MCUInit/gpio.c **** {
+ 128              	 .loc 1 156 1
+ 129              	 .cfi_startproc
+ 130              	 
+ 131              	 
+ 132 0000 80B5     	 push {r7,lr}
+ 133              	.LCFI0:
+ 134              	 .cfi_def_cfa_offset 8
+ 135              	 .cfi_offset 7,-8
+ 136              	 .cfi_offset 14,-4
+ 137 0002 00AF     	 add r7,sp,#0
+ 138              	.LCFI1:
+ 139              	 .cfi_def_cfa_register 7
+ 157:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_PH_U_HS, &Motor0_BLDC_SCALAR_GPIO_PhU_High_Config);
+ 140              	 .loc 1 157 3
+ 141 0004 0F4A     	 ldr r2,.L2
+ 142 0006 0921     	 movs r1,#9
+ 143 0008 0F48     	 ldr r0,.L2+4
+ 144 000a FFF7FEFF 	 bl XMC_GPIO_Init
+ 158:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_PH_U_LS, &Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config);
+ 145              	 .loc 1 158 3
+ 146 000e 0F4A     	 ldr r2,.L2+8
+ 147 0010 0E21     	 movs r1,#14
+ 148 0012 0F48     	 ldr r0,.L2+12
+ 149 0014 FFF7FEFF 	 bl XMC_GPIO_Init
+ 159:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_PH_V_HS, &Motor0_BLDC_SCALAR_GPIO_PhV_High_Config);
+ 150              	 .loc 1 159 3
+ 151 0018 0E4A     	 ldr r2,.L2+16
+ 152 001a 0A21     	 movs r1,#10
+ 153 001c 0A48     	 ldr r0,.L2+4
+ 154 001e FFF7FEFF 	 bl XMC_GPIO_Init
+ 160:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_PH_V_LS, &Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config);
+ 155              	 .loc 1 160 3
+ 156 0022 0D4A     	 ldr r2,.L2+20
+ 157 0024 0F21     	 movs r1,#15
+ 158 0026 0A48     	 ldr r0,.L2+12
+ 159 0028 FFF7FEFF 	 bl XMC_GPIO_Init
+ 161:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_PH_W_HS, &Motor0_BLDC_SCALAR_GPIO_PhW_High_Config);
+ 160              	 .loc 1 161 3
+ 161 002c 0B4A     	 ldr r2,.L2+24
+ 162 002e 0B21     	 movs r1,#11
+ 163 0030 0548     	 ldr r0,.L2+4
+ 164 0032 FFF7FEFF 	 bl XMC_GPIO_Init
+ 162:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_PH_W_LS, &Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config);
+ 165              	 .loc 1 162 3
+ 166 0036 0A4A     	 ldr r2,.L2+28
+ 167 0038 0821     	 movs r1,#8
+ 168 003a 0348     	 ldr r0,.L2+4
+ 169 003c FFF7FEFF 	 bl XMC_GPIO_Init
+ 163:../MotorLib/MCUInit/gpio.c **** }
+ 170              	 .loc 1 163 1
+ 171 0040 00BF     	 nop
+ 172 0042 80BD     	 pop {r7,pc}
+ 173              	.L3:
+ 174              	 .align 2
+ 175              	.L2:
+ 176 0044 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhU_High_Config
+ 177 0048 00850248 	 .word 1208124672
+ 178 004c 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config
+ 179 0050 00820248 	 .word 1208123904
+ 180 0054 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhV_High_Config
+ 181 0058 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config
+ 182 005c 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhW_High_Config
+ 183 0060 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config
+ 184              	 .cfi_endproc
+ 185              	.LFE393:
+ 187              	 .section .text.Motor0_BLDC_SCALAR_GPIO_3Hall_Init,"ax",%progbits
+ 188              	 .align 1
+ 189              	 .global Motor0_BLDC_SCALAR_GPIO_3Hall_Init
+ 190              	 .syntax unified
+ 191              	 .thumb
+ 192              	 .thumb_func
+ 193              	 .fpu fpv4-sp-d16
+ 195              	Motor0_BLDC_SCALAR_GPIO_3Hall_Init:
+ 196              	.LFB394:
+ 164:../MotorLib/MCUInit/gpio.c **** 
+ 165:../MotorLib/MCUInit/gpio.c **** #if(MOTOR0_BLDC_SCALAR_ENABLE_CTRAP == 1U)
+ 166:../MotorLib/MCUInit/gpio.c **** /*
+ 167:../MotorLib/MCUInit/gpio.c ****  * @param None <br>
+ 168:../MotorLib/MCUInit/gpio.c ****  * @return None <br>
+ 169:../MotorLib/MCUInit/gpio.c ****  *
+ 170:../MotorLib/MCUInit/gpio.c ****  * \par<b>Description:</b><br>
+ 171:../MotorLib/MCUInit/gpio.c ****  * Configures GPIO as input pin to the CCU8 external trap event.
+ 172:../MotorLib/MCUInit/gpio.c ****  */
+ 173:../MotorLib/MCUInit/gpio.c **** void Motor0_BLDC_SCALAR_GPIO_Trap_Init(void)
+ 174:../MotorLib/MCUInit/gpio.c **** {
+ 175:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_TRAP, &Motor0_BLDC_SCALAR_GPIO_Trap_Config);
+ 176:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_SetHardwareControl(MOTOR0_BLDC_SCALAR_GPIO_TRAP, GPIO_TRAP_HWSEL);
+ 177:../MotorLib/MCUInit/gpio.c **** }
+ 178:../MotorLib/MCUInit/gpio.c **** #endif
+ 179:../MotorLib/MCUInit/gpio.c **** 
+ 180:../MotorLib/MCUInit/gpio.c **** #if (MOTOR0_BLDC_SCALAR_FEEDBACK == BLDC_SCALAR_3HALL)
+ 181:../MotorLib/MCUInit/gpio.c **** /*
+ 182:../MotorLib/MCUInit/gpio.c ****  * @param None <br>
+ 183:../MotorLib/MCUInit/gpio.c ****  * @return None <br>
+ 184:../MotorLib/MCUInit/gpio.c ****  *
+ 185:../MotorLib/MCUInit/gpio.c ****  * \par<b>Description:</b><br>
+ 186:../MotorLib/MCUInit/gpio.c ****  * Configures GPIO as input pins to the POSIF to sense HALL feedback.
+ 187:../MotorLib/MCUInit/gpio.c ****  */
+ 188:../MotorLib/MCUInit/gpio.c **** void Motor0_BLDC_SCALAR_GPIO_3Hall_Init(void)
+ 189:../MotorLib/MCUInit/gpio.c **** {
+ 197              	 .loc 1 189 1
+ 198              	 .cfi_startproc
+ 199              	 
+ 200              	 
+ 201 0000 80B5     	 push {r7,lr}
+ 202              	.LCFI2:
+ 203              	 .cfi_def_cfa_offset 8
+ 204              	 .cfi_offset 7,-8
+ 205              	 .cfi_offset 14,-4
+ 206 0002 00AF     	 add r7,sp,#0
+ 207              	.LCFI3:
+ 208              	 .cfi_def_cfa_register 7
+ 190:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_HALL_1, &Motor0_BLDC_SCALAR_GPIO_Hall_Config);
+ 209              	 .loc 1 190 3
+ 210 0004 084A     	 ldr r2,.L5
+ 211 0006 0321     	 movs r1,#3
+ 212 0008 0848     	 ldr r0,.L5+4
+ 213 000a FFF7FEFF 	 bl XMC_GPIO_Init
+ 191:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_HALL_2, &Motor0_BLDC_SCALAR_GPIO_Hall_Config);
+ 214              	 .loc 1 191 3
+ 215 000e 064A     	 ldr r2,.L5
+ 216 0010 0221     	 movs r1,#2
+ 217 0012 0648     	 ldr r0,.L5+4
+ 218 0014 FFF7FEFF 	 bl XMC_GPIO_Init
+ 192:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_HALL_3, &Motor0_BLDC_SCALAR_GPIO_Hall_Config);
+ 219              	 .loc 1 192 3
+ 220 0018 034A     	 ldr r2,.L5
+ 221 001a 0121     	 movs r1,#1
+ 222 001c 0348     	 ldr r0,.L5+4
+ 223 001e FFF7FEFF 	 bl XMC_GPIO_Init
+ 193:../MotorLib/MCUInit/gpio.c **** }
+ 224              	 .loc 1 193 1
+ 225 0022 00BF     	 nop
+ 226 0024 80BD     	 pop {r7,pc}
+ 227              	.L6:
+ 228 0026 00BF     	 .align 2
+ 229              	.L5:
+ 230 0028 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_Hall_Config
+ 231 002c 00810248 	 .word 1208123648
+ 232              	 .cfi_endproc
+ 233              	.LFE394:
+ 235              	 .section .text.Motor0_BLDC_SCALAR_GPIO_Inverter_Init,"ax",%progbits
+ 236              	 .align 1
+ 237              	 .global Motor0_BLDC_SCALAR_GPIO_Inverter_Init
+ 238              	 .syntax unified
+ 239              	 .thumb
+ 240              	 .thumb_func
+ 241              	 .fpu fpv4-sp-d16
+ 243              	Motor0_BLDC_SCALAR_GPIO_Inverter_Init:
+ 244              	.LFB395:
+ 194:../MotorLib/MCUInit/gpio.c **** #endif
+ 195:../MotorLib/MCUInit/gpio.c **** 
+ 196:../MotorLib/MCUInit/gpio.c **** #if (MOTOR0_BLDC_SCALAR_INVERTER_ENABLE_CONF != BLDC_SCALAR_INV_DISABLED)
+ 197:../MotorLib/MCUInit/gpio.c **** /*
+ 198:../MotorLib/MCUInit/gpio.c ****  * @param None <br>
+ 199:../MotorLib/MCUInit/gpio.c ****  * @return None <br>
+ 200:../MotorLib/MCUInit/gpio.c ****  *
+ 201:../MotorLib/MCUInit/gpio.c ****  * \par<b>Description:</b><br>
+ 202:../MotorLib/MCUInit/gpio.c ****  * Configures GPIO as general purpose output pin for inverter enable.
+ 203:../MotorLib/MCUInit/gpio.c ****  */
+ 204:../MotorLib/MCUInit/gpio.c **** void Motor0_BLDC_SCALAR_GPIO_Inverter_Init(void)
+ 205:../MotorLib/MCUInit/gpio.c **** {
+ 245              	 .loc 1 205 1
+ 246              	 .cfi_startproc
+ 247              	 
+ 248              	 
+ 249 0000 80B5     	 push {r7,lr}
+ 250              	.LCFI4:
+ 251              	 .cfi_def_cfa_offset 8
+ 252              	 .cfi_offset 7,-8
+ 253              	 .cfi_offset 14,-4
+ 254 0002 00AF     	 add r7,sp,#0
+ 255              	.LCFI5:
+ 256              	 .cfi_def_cfa_register 7
+ 206:../MotorLib/MCUInit/gpio.c ****   XMC_GPIO_Init(MOTOR0_BLDC_SCALAR_GPIO_INV_ENABLE, &Motor0_BLDC_SCALAR_GPIO_Inverter_Config);
+ 257              	 .loc 1 206 3
+ 258 0004 034A     	 ldr r2,.L8
+ 259 0006 0B21     	 movs r1,#11
+ 260 0008 0348     	 ldr r0,.L8+4
+ 261 000a FFF7FEFF 	 bl XMC_GPIO_Init
+ 207:../MotorLib/MCUInit/gpio.c **** }
+ 262              	 .loc 1 207 1
+ 263 000e 00BF     	 nop
+ 264 0010 80BD     	 pop {r7,pc}
+ 265              	.L9:
+ 266 0012 00BF     	 .align 2
+ 267              	.L8:
+ 268 0014 00000000 	 .word Motor0_BLDC_SCALAR_GPIO_Inverter_Config
+ 269 0018 00820248 	 .word 1208123904
+ 270              	 .cfi_endproc
+ 271              	.LFE395:
+ 273              	 .text
+ 274              	.Letext0:
+ 275              	 .file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 276              	 .file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 277              	 .file 4 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc_gpio.h"
+ 278              	 .file 5 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 279              	 .file 6 "../MotorLib/MCUInit/gpio.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 gpio.c
+    {standard input}:21     .rodata.Motor0_BLDC_SCALAR_GPIO_PhU_High_Config:00000000 Motor0_BLDC_SCALAR_GPIO_PhU_High_Config
+    {standard input}:18     .rodata.Motor0_BLDC_SCALAR_GPIO_PhU_High_Config:00000000 $d
+    {standard input}:32     .rodata.Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config:00000000 Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config
+    {standard input}:29     .rodata.Motor0_BLDC_SCALAR_GPIO_PhU_Low_Config:00000000 $d
+    {standard input}:43     .rodata.Motor0_BLDC_SCALAR_GPIO_PhV_High_Config:00000000 Motor0_BLDC_SCALAR_GPIO_PhV_High_Config
+    {standard input}:40     .rodata.Motor0_BLDC_SCALAR_GPIO_PhV_High_Config:00000000 $d
+    {standard input}:54     .rodata.Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config:00000000 Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config
+    {standard input}:51     .rodata.Motor0_BLDC_SCALAR_GPIO_PhV_Low_Config:00000000 $d
+    {standard input}:65     .rodata.Motor0_BLDC_SCALAR_GPIO_PhW_High_Config:00000000 Motor0_BLDC_SCALAR_GPIO_PhW_High_Config
+    {standard input}:62     .rodata.Motor0_BLDC_SCALAR_GPIO_PhW_High_Config:00000000 $d
+    {standard input}:76     .rodata.Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config:00000000 Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config
+    {standard input}:73     .rodata.Motor0_BLDC_SCALAR_GPIO_PhW_Low_Config:00000000 $d
+    {standard input}:87     .rodata.Motor0_BLDC_SCALAR_GPIO_Hall_Config:00000000 Motor0_BLDC_SCALAR_GPIO_Hall_Config
+    {standard input}:84     .rodata.Motor0_BLDC_SCALAR_GPIO_Hall_Config:00000000 $d
+    {standard input}:98     .rodata.Motor0_BLDC_SCALAR_GPIO_PWM_Config:00000000 Motor0_BLDC_SCALAR_GPIO_PWM_Config
+    {standard input}:95     .rodata.Motor0_BLDC_SCALAR_GPIO_PWM_Config:00000000 $d
+    {standard input}:110    .rodata.Motor0_BLDC_SCALAR_GPIO_Inverter_Config:00000000 Motor0_BLDC_SCALAR_GPIO_Inverter_Config
+    {standard input}:107    .rodata.Motor0_BLDC_SCALAR_GPIO_Inverter_Config:00000000 $d
+    {standard input}:117    .text.Motor0_BLDC_SCALAR_GPIO_PWM_Init:00000000 $t
+    {standard input}:125    .text.Motor0_BLDC_SCALAR_GPIO_PWM_Init:00000000 Motor0_BLDC_SCALAR_GPIO_PWM_Init
+    {standard input}:176    .text.Motor0_BLDC_SCALAR_GPIO_PWM_Init:00000044 $d
+    {standard input}:188    .text.Motor0_BLDC_SCALAR_GPIO_3Hall_Init:00000000 $t
+    {standard input}:195    .text.Motor0_BLDC_SCALAR_GPIO_3Hall_Init:00000000 Motor0_BLDC_SCALAR_GPIO_3Hall_Init
+    {standard input}:230    .text.Motor0_BLDC_SCALAR_GPIO_3Hall_Init:00000028 $d
+    {standard input}:236    .text.Motor0_BLDC_SCALAR_GPIO_Inverter_Init:00000000 $t
+    {standard input}:243    .text.Motor0_BLDC_SCALAR_GPIO_Inverter_Init:00000000 Motor0_BLDC_SCALAR_GPIO_Inverter_Init
+    {standard input}:268    .text.Motor0_BLDC_SCALAR_GPIO_Inverter_Init:00000014 $d
+
+UNDEFINED SYMBOLS
+XMC_GPIO_Init

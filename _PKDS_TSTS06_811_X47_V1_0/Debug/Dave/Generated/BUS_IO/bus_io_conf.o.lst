@@ -1,0 +1,153 @@
+   1              	 .cpu cortex-m4
+   2              	 .eabi_attribute 27,1
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,1
+  11              	 .eabi_attribute 18,4
+  12              	 .file "bus_io_conf.c"
+  13              	 .text
+  14              	.Ltext0:
+  15              	 .cfi_sections .debug_frame
+  16              	 .global DI_NPN_pin_list
+  17              	 .section .rodata.DI_NPN_pin_list,"a"
+  18              	 .align 2
+  21              	DI_NPN_pin_list:
+  22 0000 008F0248 	 .word 1208127232
+  23 0004 07       	 .byte 7
+  24 0005 000000   	 .space 3
+  25 0008 008F0248 	 .word 1208127232
+  26 000c 06       	 .byte 6
+  27 000d 000000   	 .space 3
+  28 0010 008F0248 	 .word 1208127232
+  29 0014 05       	 .byte 5
+  30 0015 000000   	 .space 3
+  31 0018 008F0248 	 .word 1208127232
+  32 001c 04       	 .byte 4
+  33 001d 000000   	 .space 3
+  34              	 .global DI_NPN
+  35              	 .section .data.DI_NPN,"aw"
+  36              	 .align 2
+  39              	DI_NPN:
+  40 0000 00000000 	 .word DI_NPN_pin_list
+  41 0004 00       	 .byte 0
+  42 0005 00000000 	 .space 11
+  42      00000000 
+  42      000000
+  43 0010 04       	 .byte 4
+  44 0011 000000   	 .space 3
+  45              	 .global DI_PNP_pin_list
+  46              	 .section .rodata.DI_PNP_pin_list,"a"
+  47              	 .align 2
+  50              	DI_PNP_pin_list:
+  51 0000 008E0248 	 .word 1208126976
+  52 0004 0F       	 .byte 15
+  53 0005 000000   	 .space 3
+  54 0008 008E0248 	 .word 1208126976
+  55 000c 0E       	 .byte 14
+  56 000d 000000   	 .space 3
+  57 0010 008E0248 	 .word 1208126976
+  58 0014 0D       	 .byte 13
+  59 0015 000000   	 .space 3
+  60 0018 008E0248 	 .word 1208126976
+  61 001c 0C       	 .byte 12
+  62 001d 000000   	 .space 3
+  63              	 .global DI_PNP
+  64              	 .section .data.DI_PNP,"aw"
+  65              	 .align 2
+  68              	DI_PNP:
+  69 0000 00000000 	 .word DI_PNP_pin_list
+  70 0004 00       	 .byte 0
+  71 0005 00000000 	 .space 11
+  71      00000000 
+  71      000000
+  72 0010 04       	 .byte 4
+  73 0011 000000   	 .space 3
+  74              	 .global GROUP_IN_pin_list
+  75              	 .section .rodata.GROUP_IN_pin_list,"a"
+  76              	 .align 2
+  79              	GROUP_IN_pin_list:
+  80 0000 00850248 	 .word 1208124672
+  81 0004 00       	 .byte 0
+  82 0005 000000   	 .space 3
+  83 0008 00850248 	 .word 1208124672
+  84 000c 01       	 .byte 1
+  85 000d 000000   	 .space 3
+  86 0010 00850248 	 .word 1208124672
+  87 0014 02       	 .byte 2
+  88 0015 000000   	 .space 3
+  89 0018 00850248 	 .word 1208124672
+  90 001c 03       	 .byte 3
+  91 001d 000000   	 .space 3
+  92              	 .global GROUP_IN
+  93              	 .section .data.GROUP_IN,"aw"
+  94              	 .align 2
+  97              	GROUP_IN:
+  98 0000 00000000 	 .word GROUP_IN_pin_list
+  99 0004 00       	 .byte 0
+ 100 0005 00000000 	 .space 11
+ 100      00000000 
+ 100      000000
+ 101 0010 04       	 .byte 4
+ 102 0011 000000   	 .space 3
+ 103              	 .global GROUP_OUT_pin_list
+ 104              	 .section .rodata.GROUP_OUT_pin_list,"a"
+ 105              	 .align 2
+ 108              	GROUP_OUT_pin_list:
+ 109 0000 00850248 	 .word 1208124672
+ 110 0004 04       	 .byte 4
+ 111 0005 000000   	 .space 3
+ 112 0008 00850248 	 .word 1208124672
+ 113 000c 05       	 .byte 5
+ 114 000d 000000   	 .space 3
+ 115 0010 00850248 	 .word 1208124672
+ 116 0014 06       	 .byte 6
+ 117 0015 000000   	 .space 3
+ 118 0018 00850248 	 .word 1208124672
+ 119 001c 07       	 .byte 7
+ 120 001d 000000   	 .space 3
+ 121              	 .global GROUP_OUT
+ 122              	 .section .data.GROUP_OUT,"aw"
+ 123              	 .align 2
+ 126              	GROUP_OUT:
+ 127 0000 00000000 	 .word GROUP_OUT_pin_list
+ 128 0004 80       	 .byte -128
+ 129 0005 000000   	 .space 3
+ 130 0008 00000100 	 .word 65536
+ 131 000c 04       	 .byte 4
+ 132 000d 000000   	 .space 3
+ 133 0010 04       	 .byte 4
+ 134 0011 000000   	 .space 3
+ 135              	 .text
+ 136              	.Letext0:
+ 137              	 .file 1 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 138              	 .file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 139              	 .file 3 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc_gpio.h"
+ 140              	 .file 4 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 141              	 .file 5 "../Dave/Generated/BUS_IO/bus_io.h"
+ 142              	 .file 6 "../Dave/Generated/BUS_IO/bus_io_extern.h"
+ 143              	 .file 7 "../Dave/Generated/BUS_IO/bus_io_conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 bus_io_conf.c
+    {standard input}:21     .rodata.DI_NPN_pin_list:00000000 DI_NPN_pin_list
+    {standard input}:18     .rodata.DI_NPN_pin_list:00000000 $d
+    {standard input}:39     .data.DI_NPN:00000000 DI_NPN
+    {standard input}:36     .data.DI_NPN:00000000 $d
+    {standard input}:50     .rodata.DI_PNP_pin_list:00000000 DI_PNP_pin_list
+    {standard input}:47     .rodata.DI_PNP_pin_list:00000000 $d
+    {standard input}:68     .data.DI_PNP:00000000 DI_PNP
+    {standard input}:65     .data.DI_PNP:00000000 $d
+    {standard input}:79     .rodata.GROUP_IN_pin_list:00000000 GROUP_IN_pin_list
+    {standard input}:76     .rodata.GROUP_IN_pin_list:00000000 $d
+    {standard input}:97     .data.GROUP_IN:00000000 GROUP_IN
+    {standard input}:94     .data.GROUP_IN:00000000 $d
+    {standard input}:108    .rodata.GROUP_OUT_pin_list:00000000 GROUP_OUT_pin_list
+    {standard input}:105    .rodata.GROUP_OUT_pin_list:00000000 $d
+    {standard input}:126    .data.GROUP_OUT:00000000 GROUP_OUT
+    {standard input}:123    .data.GROUP_OUT:00000000 $d
+
+NO UNDEFINED SYMBOLS

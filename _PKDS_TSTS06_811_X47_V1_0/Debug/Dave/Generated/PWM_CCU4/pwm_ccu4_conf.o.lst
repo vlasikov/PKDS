@@ -1,0 +1,266 @@
+   1              	 .cpu cortex-m4
+   2              	 .eabi_attribute 27,1
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,1
+  11              	 .eabi_attribute 18,4
+  12              	 .file "pwm_ccu4_conf.c"
+  13              	 .text
+  14              	.Ltext0:
+  15              	 .cfi_sections .debug_frame
+  16              	 .global BUZZ_PWM_timer_handle
+  17              	 .section .rodata.BUZZ_PWM_timer_handle,"a"
+  18              	 .align 2
+  21              	BUZZ_PWM_timer_handle:
+  22 0000 00       	 .byte 0
+  23 0001 00       	 .byte 0
+  24 0002 00       	 .byte 0
+  25 0003 00       	 .byte 0
+  26 0004 06       	 .byte 6
+  27 0005 00       	 .byte 0
+  28 0006 0000     	 .space 2
+  29              	 .global BUZZ_PWM_event0_config
+  30              	 .section .rodata.BUZZ_PWM_event0_config,"a"
+  31              	 .align 2
+  34              	BUZZ_PWM_event0_config:
+  35 0000 00       	 .byte 0
+  36 0001 00       	 .byte 0
+  37 0002 01       	 .byte 1
+  38 0003 00       	 .byte 0
+  39              	 .global BUZZ_PWM_event1_config
+  40              	 .section .rodata.BUZZ_PWM_event1_config,"a"
+  41              	 .align 2
+  44              	BUZZ_PWM_event1_config:
+  45 0000 00       	 .byte 0
+  46 0001 00       	 .byte 0
+  47 0002 01       	 .byte 1
+  48 0003 00       	 .byte 0
+  49              	 .global BUZZ_PWM_event2_config
+  50              	 .section .rodata.BUZZ_PWM_event2_config,"a"
+  51              	 .align 2
+  54              	BUZZ_PWM_event2_config:
+  55 0000 00       	 .byte 0
+  56 0001 00       	 .byte 0
+  57 0002 01       	 .byte 1
+  58 0003 00       	 .byte 0
+  59              	 .global BUZZ_PWM_config_handle
+  60              	 .section .rodata.BUZZ_PWM_config_handle,"a"
+  61              	 .align 2
+  64              	BUZZ_PWM_config_handle:
+  65 0000 00       	 .byte 0
+  66 0001 00       	 .space 1
+  67 0002 5207     	 .short 1874
+  68 0004 A903     	 .short 937
+  69 0006 01       	 .byte 1
+  70 0007 01       	 .byte 1
+  71 0008 00       	 .byte 0
+  72 0009 00       	 .byte 0
+  73 000a 00       	 .byte 0
+  74 000b 00       	 .byte 0
+  75 000c 00       	 .byte 0
+  76 000d 00       	 .byte 0
+  77 000e 02       	 .byte 2
+  78 000f 02       	 .byte 2
+  79 0010 00       	 .byte 0
+  80 0011 00       	 .byte 0
+  81 0012 00       	 .byte 0
+  82 0013 00       	 .byte 0
+  83 0014 00000000 	 .word BUZZ_PWM_event0_config
+  84 0018 00000000 	 .word BUZZ_PWM_event1_config
+  85 001c 00000000 	 .word BUZZ_PWM_event2_config
+  86 0020 00       	 .byte 0
+  87 0021 00       	 .byte 0
+  88 0022 00       	 .byte 0
+  89 0023 00       	 .byte 0
+  90 0024 00       	 .byte 0
+  91 0025 00       	 .byte 0
+  92 0026 00       	 .byte 0
+  93 0027 00       	 .byte 0
+  94 0028 00       	 .byte 0
+  95 0029 00       	 .byte 0
+  96 002a 00       	 .byte 0
+  97 002b 00       	 .byte 0
+  98 002c 00       	 .byte 0
+  99 002d 00       	 .byte 0
+ 100 002e 00       	 .byte 0
+ 101 002f 01       	 .byte 1
+ 102 0030 00       	 .byte 0
+ 103 0031 000000   	 .space 3
+ 104 0034 00000010 	 .word 268435456
+ 105 0038 00000000 	 .word BUZZ_PWM_timer_handle
+ 106 003c 00       	 .byte 0
+ 107 003d 000000   	 .space 3
+ 108 0040 00000000 	 .word 0
+ 109 0044 00       	 .byte 0
+ 110 0045 000000   	 .space 3
+ 111 0048 00000000 	 .word 0
+ 112 004c 00000000 	 .word GLOBAL_CCU4_0
+ 113              	 .global BUZZ_PWM
+ 114              	 .section .data.BUZZ_PWM,"aw"
+ 115              	 .align 2
+ 118              	BUZZ_PWM:
+ 119 0000 00000000 	 .word BUZZ_PWM_config_handle
+ 120 0004 00400048 	 .word 1207975936
+ 121 0008 00430048 	 .word 1207976704
+ 122 000c 03       	 .byte 3
+ 123 000d 02       	 .byte 2
+ 124 000e 0000     	 .space 2
+ 125 0010 00010000 	 .word 256
+ 126 0014 00020000 	 .word 512
+ 127 0018 00040000 	 .word 1024
+ 128 001c 00       	 .byte 0
+ 129 001d 00000000 	 .space 7
+ 129      000000
+ 130 0024 8A130000 	 .word 5002
+ 131              	 .global CLUTCH_PWM_timer_handle
+ 132              	 .section .rodata.CLUTCH_PWM_timer_handle,"a"
+ 133              	 .align 2
+ 136              	CLUTCH_PWM_timer_handle:
+ 137 0000 00       	 .byte 0
+ 138 0001 00       	 .byte 0
+ 139 0002 00       	 .byte 0
+ 140 0003 00       	 .byte 0
+ 141 0004 06       	 .byte 6
+ 142 0005 00       	 .byte 0
+ 143 0006 0000     	 .space 2
+ 144              	 .global CLUTCH_PWM_event0_config
+ 145              	 .section .rodata.CLUTCH_PWM_event0_config,"a"
+ 146              	 .align 2
+ 149              	CLUTCH_PWM_event0_config:
+ 150 0000 00       	 .byte 0
+ 151 0001 00       	 .byte 0
+ 152 0002 01       	 .byte 1
+ 153 0003 00       	 .byte 0
+ 154              	 .global CLUTCH_PWM_event1_config
+ 155              	 .section .rodata.CLUTCH_PWM_event1_config,"a"
+ 156              	 .align 2
+ 159              	CLUTCH_PWM_event1_config:
+ 160 0000 00       	 .byte 0
+ 161 0001 00       	 .byte 0
+ 162 0002 01       	 .byte 1
+ 163 0003 00       	 .byte 0
+ 164              	 .global CLUTCH_PWM_event2_config
+ 165              	 .section .rodata.CLUTCH_PWM_event2_config,"a"
+ 166              	 .align 2
+ 169              	CLUTCH_PWM_event2_config:
+ 170 0000 00       	 .byte 0
+ 171 0001 00       	 .byte 0
+ 172 0002 01       	 .byte 1
+ 173 0003 00       	 .byte 0
+ 174              	 .global CLUTCH_PWM_config_handle
+ 175              	 .section .rodata.CLUTCH_PWM_config_handle,"a"
+ 176              	 .align 2
+ 179              	CLUTCH_PWM_config_handle:
+ 180 0000 00       	 .byte 0
+ 181 0001 00       	 .space 1
+ 182 0002 5207     	 .short 1874
+ 183 0004 A903     	 .short 937
+ 184 0006 01       	 .byte 1
+ 185 0007 01       	 .byte 1
+ 186 0008 00       	 .byte 0
+ 187 0009 00       	 .byte 0
+ 188 000a 00       	 .byte 0
+ 189 000b 00       	 .byte 0
+ 190 000c 00       	 .byte 0
+ 191 000d 01       	 .byte 1
+ 192 000e 03       	 .byte 3
+ 193 000f 03       	 .byte 3
+ 194 0010 01       	 .byte 1
+ 195 0011 00       	 .byte 0
+ 196 0012 00       	 .byte 0
+ 197 0013 00       	 .byte 0
+ 198 0014 00000000 	 .word CLUTCH_PWM_event0_config
+ 199 0018 00000000 	 .word CLUTCH_PWM_event1_config
+ 200 001c 00000000 	 .word CLUTCH_PWM_event2_config
+ 201 0020 00       	 .byte 0
+ 202 0021 00       	 .byte 0
+ 203 0022 00       	 .byte 0
+ 204 0023 00       	 .byte 0
+ 205 0024 00       	 .byte 0
+ 206 0025 00       	 .byte 0
+ 207 0026 00       	 .byte 0
+ 208 0027 00       	 .byte 0
+ 209 0028 00       	 .byte 0
+ 210 0029 00       	 .byte 0
+ 211 002a 00       	 .byte 0
+ 212 002b 00       	 .byte 0
+ 213 002c 00       	 .byte 0
+ 214 002d 00       	 .byte 0
+ 215 002e 00       	 .byte 0
+ 216 002f 01       	 .byte 1
+ 217 0030 00       	 .byte 0
+ 218 0031 000000   	 .space 3
+ 219 0034 00000020 	 .word 536870912
+ 220 0038 00000000 	 .word CLUTCH_PWM_timer_handle
+ 221 003c 00       	 .byte 0
+ 222 003d 000000   	 .space 3
+ 223 0040 00000000 	 .word 0
+ 224 0044 00       	 .byte 0
+ 225 0045 000000   	 .space 3
+ 226 0048 00000000 	 .word 0
+ 227 004c 00000000 	 .word GLOBAL_CCU4_0
+ 228              	 .global CLUTCH_PWM
+ 229              	 .section .data.CLUTCH_PWM,"aw"
+ 230              	 .align 2
+ 233              	CLUTCH_PWM:
+ 234 0000 00000000 	 .word CLUTCH_PWM_config_handle
+ 235 0004 00400048 	 .word 1207975936
+ 236 0008 00440048 	 .word 1207976960
+ 237 000c 03       	 .byte 3
+ 238 000d 03       	 .byte 3
+ 239 000e 0000     	 .space 2
+ 240 0010 00100000 	 .word 4096
+ 241 0014 00200000 	 .word 8192
+ 242 0018 00400000 	 .word 16384
+ 243 001c 00       	 .byte 0
+ 244 001d 00000000 	 .space 7
+ 244      000000
+ 245 0024 8A130000 	 .word 5002
+ 246              	 .text
+ 247              	.Letext0:
+ 248              	 .file 1 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 249              	 .file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 250              	 .file 3 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/CMSIS/Infineon/XMC4700_series/Include/XMC4700.h"
+ 251              	 .file 4 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc_gpio.h"
+ 252              	 .file 5 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc4_gpio.h"
+ 253              	 .file 6 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc_ccu4.h"
+ 254              	 .file 7 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc4_scu.h"
+ 255              	 .file 8 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Dave/Generated/GLOBAL_CCU4/global_ccu4.h"
+ 256              	 .file 9 "../Dave/Generated/PWM_CCU4/pwm_ccu4.h"
+ 257              	 .file 10 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Dave/Generated/GLOBAL_CCU4/global_ccu4_extern.h"
+ 258              	 .file 11 "../Dave/Generated/PWM_CCU4/pwm_ccu4_extern.h"
+ 259              	 .file 12 "../Dave/Generated/PWM_CCU4/pwm_ccu4_conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 pwm_ccu4_conf.c
+    {standard input}:21     .rodata.BUZZ_PWM_timer_handle:00000000 BUZZ_PWM_timer_handle
+    {standard input}:18     .rodata.BUZZ_PWM_timer_handle:00000000 $d
+    {standard input}:34     .rodata.BUZZ_PWM_event0_config:00000000 BUZZ_PWM_event0_config
+    {standard input}:31     .rodata.BUZZ_PWM_event0_config:00000000 $d
+    {standard input}:44     .rodata.BUZZ_PWM_event1_config:00000000 BUZZ_PWM_event1_config
+    {standard input}:41     .rodata.BUZZ_PWM_event1_config:00000000 $d
+    {standard input}:54     .rodata.BUZZ_PWM_event2_config:00000000 BUZZ_PWM_event2_config
+    {standard input}:51     .rodata.BUZZ_PWM_event2_config:00000000 $d
+    {standard input}:64     .rodata.BUZZ_PWM_config_handle:00000000 BUZZ_PWM_config_handle
+    {standard input}:61     .rodata.BUZZ_PWM_config_handle:00000000 $d
+    {standard input}:118    .data.BUZZ_PWM:00000000 BUZZ_PWM
+    {standard input}:115    .data.BUZZ_PWM:00000000 $d
+    {standard input}:136    .rodata.CLUTCH_PWM_timer_handle:00000000 CLUTCH_PWM_timer_handle
+    {standard input}:133    .rodata.CLUTCH_PWM_timer_handle:00000000 $d
+    {standard input}:149    .rodata.CLUTCH_PWM_event0_config:00000000 CLUTCH_PWM_event0_config
+    {standard input}:146    .rodata.CLUTCH_PWM_event0_config:00000000 $d
+    {standard input}:159    .rodata.CLUTCH_PWM_event1_config:00000000 CLUTCH_PWM_event1_config
+    {standard input}:156    .rodata.CLUTCH_PWM_event1_config:00000000 $d
+    {standard input}:169    .rodata.CLUTCH_PWM_event2_config:00000000 CLUTCH_PWM_event2_config
+    {standard input}:166    .rodata.CLUTCH_PWM_event2_config:00000000 $d
+    {standard input}:179    .rodata.CLUTCH_PWM_config_handle:00000000 CLUTCH_PWM_config_handle
+    {standard input}:176    .rodata.CLUTCH_PWM_config_handle:00000000 $d
+    {standard input}:233    .data.CLUTCH_PWM:00000000 CLUTCH_PWM
+    {standard input}:230    .data.CLUTCH_PWM:00000000 $d
+
+UNDEFINED SYMBOLS
+GLOBAL_CCU4_0

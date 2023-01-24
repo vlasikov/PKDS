@@ -1,0 +1,157 @@
+   1              	 .cpu cortex-m4
+   2              	 .eabi_attribute 27,1
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,1
+  11              	 .eabi_attribute 18,4
+  12              	 .file "global_adc_conf.c"
+  13              	 .text
+  14              	.Ltext0:
+  15              	 .cfi_sections .debug_frame
+  16              	 .global group_init_handle0
+  17              	 .section .rodata.group_init_handle0,"a"
+  18              	 .align 2
+  21              	group_init_handle0:
+  22 0000 00000000 	 .space 20
+  22      00000000 
+  22      00000000 
+  22      00000000 
+  22      00000000 
+  23              	 .global group_init_handle1
+  24              	 .section .rodata.group_init_handle1,"a"
+  25              	 .align 2
+  28              	group_init_handle1:
+  29 0000 00000000 	 .space 20
+  29      00000000 
+  29      00000000 
+  29      00000000 
+  29      00000000 
+  30              	 .global group_init_handle2
+  31              	 .section .rodata.group_init_handle2,"a"
+  32              	 .align 2
+  35              	group_init_handle2:
+  36 0000 00000000 	 .space 20
+  36      00000000 
+  36      00000000 
+  36      00000000 
+  36      00000000 
+  37              	 .global group_init_handle3
+  38              	 .section .rodata.group_init_handle3,"a"
+  39              	 .align 2
+  42              	group_init_handle3:
+  43 0000 00000000 	 .space 20
+  43      00000000 
+  43      00000000 
+  43      00000000 
+  43      00000000 
+  44              	 .global global_config
+  45              	 .section .rodata.global_config,"a"
+  46              	 .align 2
+  49              	global_config:
+  50 0000 00       	 .byte 0
+  51 0001 00       	 .byte 0
+  52 0002 00       	 .byte 0
+  53 0003 00       	 .byte 0
+  54 0004 03       	 .byte 3
+  55 0005 00       	 .byte 0
+  56 0006 0000     	 .space 2
+  57 0008 00       	 .byte 0
+  58 0009 00       	 .byte 0
+  59 000a 00       	 .byte 0
+  60 000b 00       	 .byte 0
+  61 000c 00       	 .byte 0
+  62 000d 00       	 .byte 0
+  63 000e 00       	 .byte 0
+  64 000f 00       	 .byte 0
+  65 0010 0000     	 .space 2
+  66 0012 00       	 .byte 0
+  67 0013 00       	 .byte 0
+  68 0014 00       	 .byte 0
+  69 0015 000000   	 .space 3
+  70              	 .global group_0_config
+  71              	 .section .data.group_0_config,"aw"
+  72              	 .align 2
+  75              	group_0_config:
+  76 0000 00440040 	 .word 1073759232
+  77 0004 00000000 	 .word group_init_handle0
+  78 0008 01       	 .byte 1
+  79 0009 02       	 .byte 2
+  80 000a 0000     	 .space 2
+  81              	 .global group_1_config
+  82              	 .section .data.group_1_config,"aw"
+  83              	 .align 2
+  86              	group_1_config:
+  87 0000 00480040 	 .word 1073760256
+  88 0004 00000000 	 .word group_init_handle1
+  89 0008 01       	 .byte 1
+  90 0009 02       	 .byte 2
+  91 000a 0000     	 .space 2
+  92              	 .global group_2_config
+  93              	 .section .data.group_2_config,"aw"
+  94              	 .align 2
+  97              	group_2_config:
+  98 0000 004C0040 	 .word 1073761280
+  99 0004 00000000 	 .word group_init_handle2
+ 100 0008 01       	 .byte 1
+ 101 0009 02       	 .byte 2
+ 102 000a 0000     	 .space 2
+ 103              	 .global group_3_config
+ 104              	 .section .data.group_3_config,"aw"
+ 105              	 .align 2
+ 108              	group_3_config:
+ 109 0000 00500040 	 .word 1073762304
+ 110 0004 00000000 	 .word group_init_handle3
+ 111 0008 01       	 .byte 1
+ 112 0009 02       	 .byte 2
+ 113 000a 0000     	 .space 2
+ 114              	 .global GLOBAL_ADC_0
+ 115              	 .section .data.GLOBAL_ADC_0,"aw"
+ 116              	 .align 2
+ 119              	GLOBAL_ADC_0:
+ 120 0000 00000000 	 .word group_0_config
+ 121 0004 00000000 	 .word group_1_config
+ 122 0008 00000000 	 .word group_2_config
+ 123 000c 00000000 	 .word group_3_config
+ 124 0010 00000000 	 .word global_config
+ 125 0014 00400040 	 .word 1073758208
+ 126 0018 02       	 .byte 2
+ 127 0019 01       	 .byte 1
+ 128 001a 0000     	 .space 2
+ 129              	 .text
+ 130              	.Letext0:
+ 131              	 .file 1 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 132              	 .file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 133              	 .file 3 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/CMSIS/Infineon/XMC4700_series/Include/XMC4700.h"
+ 134              	 .file 4 "C:/Workspaces/DAVE-4.4.2-64Bit/_PKDS_TSTS06_811_X47_V1_0/Libraries/XMCLib/inc/xmc_vadc.h"
+ 135              	 .file 5 "../Dave/Generated/GLOBAL_ADC/global_adc.h"
+ 136              	 .file 6 "../Dave/Generated/GLOBAL_ADC/global_adc_extern.h"
+ 137              	 .file 7 "../Dave/Generated/GLOBAL_ADC/global_adc_conf.c"
+DEFINED SYMBOLS
+                            *ABS*:00000000 global_adc_conf.c
+    {standard input}:21     .rodata.group_init_handle0:00000000 group_init_handle0
+    {standard input}:18     .rodata.group_init_handle0:00000000 $d
+    {standard input}:28     .rodata.group_init_handle1:00000000 group_init_handle1
+    {standard input}:25     .rodata.group_init_handle1:00000000 $d
+    {standard input}:35     .rodata.group_init_handle2:00000000 group_init_handle2
+    {standard input}:32     .rodata.group_init_handle2:00000000 $d
+    {standard input}:42     .rodata.group_init_handle3:00000000 group_init_handle3
+    {standard input}:39     .rodata.group_init_handle3:00000000 $d
+    {standard input}:49     .rodata.global_config:00000000 global_config
+    {standard input}:46     .rodata.global_config:00000000 $d
+    {standard input}:75     .data.group_0_config:00000000 group_0_config
+    {standard input}:72     .data.group_0_config:00000000 $d
+    {standard input}:86     .data.group_1_config:00000000 group_1_config
+    {standard input}:83     .data.group_1_config:00000000 $d
+    {standard input}:97     .data.group_2_config:00000000 group_2_config
+    {standard input}:94     .data.group_2_config:00000000 $d
+    {standard input}:108    .data.group_3_config:00000000 group_3_config
+    {standard input}:105    .data.group_3_config:00000000 $d
+    {standard input}:119    .data.GLOBAL_ADC_0:00000000 GLOBAL_ADC_0
+    {standard input}:116    .data.GLOBAL_ADC_0:00000000 $d
+
+NO UNDEFINED SYMBOLS

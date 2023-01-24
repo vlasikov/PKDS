@@ -1,0 +1,658 @@
+   1              	 .cpu cortex-m4
+   2              	 .eabi_attribute 27,1
+   3              	 .eabi_attribute 20,1
+   4              	 .eabi_attribute 21,1
+   5              	 .eabi_attribute 23,3
+   6              	 .eabi_attribute 24,1
+   7              	 .eabi_attribute 25,1
+   8              	 .eabi_attribute 26,1
+   9              	 .eabi_attribute 30,6
+  10              	 .eabi_attribute 34,1
+  11              	 .eabi_attribute 18,4
+  12              	 .file "bldc_scalar_user_interface.c"
+  13              	 .text
+  14              	.Ltext0:
+  15              	 .cfi_sections .debug_frame
+  16              	 .section .text.Motor0_BLDC_SCALAR_MotorVarInit,"ax",%progbits
+  17              	 .align 1
+  18              	 .arch armv7e-m
+  19              	 .syntax unified
+  20              	 .thumb
+  21              	 .thumb_func
+  22              	 .fpu fpv4-sp-d16
+  24              	Motor0_BLDC_SCALAR_MotorVarInit:
+  25              	.LFB449:
+  26              	 .file 1 "../MotorLib/bldc_scalar_user_interface.c"
+   1:../MotorLib/bldc_scalar_user_interface.c **** /**
+   2:../MotorLib/bldc_scalar_user_interface.c ****  * @file bldc_scalar_user_interface.c
+   3:../MotorLib/bldc_scalar_user_interface.c ****  * @brief User interface APIs allow to change control algorithm parameters like set value, directio
+   4:../MotorLib/bldc_scalar_user_interface.c ****  * @date 2016-08-31
+   5:../MotorLib/bldc_scalar_user_interface.c **** 
+   6:../MotorLib/bldc_scalar_user_interface.c ****  **************************************************************************************************
+   7:../MotorLib/bldc_scalar_user_interface.c ****  * BLDC_SCALAR_CONTROL v1.0.2 - BLDC motor control using block commutation
+   8:../MotorLib/bldc_scalar_user_interface.c ****  * Copyright (c) 2015-2016, Infineon Technologies AG
+   9:../MotorLib/bldc_scalar_user_interface.c ****  * All rights reserved.
+  10:../MotorLib/bldc_scalar_user_interface.c ****  *
+  11:../MotorLib/bldc_scalar_user_interface.c ****  * Redistribution and use in source and binary forms, with or without modification,are permitted pr
+  12:../MotorLib/bldc_scalar_user_interface.c ****  * following conditions are met:
+  13:../MotorLib/bldc_scalar_user_interface.c ****  *
+  14:../MotorLib/bldc_scalar_user_interface.c ****  *   Redistributions of source code must retain the above copyright notice, this list of conditions
+  15:../MotorLib/bldc_scalar_user_interface.c ****  *   disclaimer.
+  16:../MotorLib/bldc_scalar_user_interface.c ****  *
+  17:../MotorLib/bldc_scalar_user_interface.c ****  *   Redistributions in binary form must reproduce the above copyright notice, this list of conditi
+  18:../MotorLib/bldc_scalar_user_interface.c ****  *   following disclaimer in the documentation and/or other materials provided with the distributio
+  19:../MotorLib/bldc_scalar_user_interface.c ****  *
+  20:../MotorLib/bldc_scalar_user_interface.c ****  *   Neither the name of the copyright holders nor the names of its contributors may be used to end
+  21:../MotorLib/bldc_scalar_user_interface.c ****  *   products derived from this software without specific prior written permission.
+  22:../MotorLib/bldc_scalar_user_interface.c ****  *
+  23:../MotorLib/bldc_scalar_user_interface.c ****  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR I
+  24:../MotorLib/bldc_scalar_user_interface.c ****  * INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTI
+  25:../MotorLib/bldc_scalar_user_interface.c ****  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  FOR ANY DIRECT, IN
+  26:../MotorLib/bldc_scalar_user_interface.c ****  * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBS
+  27:../MotorLib/bldc_scalar_user_interface.c ****  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THE
+  28:../MotorLib/bldc_scalar_user_interface.c ****  * WHETHER IN CONTRACT, STRICT LIABILITY,OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+  29:../MotorLib/bldc_scalar_user_interface.c ****  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  30:../MotorLib/bldc_scalar_user_interface.c ****  *
+  31:../MotorLib/bldc_scalar_user_interface.c ****  * To improve the quality of the software, users are encouraged to share modifications, enhancement
+  32:../MotorLib/bldc_scalar_user_interface.c ****  * with Infineon Technologies AG (dave@infineon.com).
+  33:../MotorLib/bldc_scalar_user_interface.c ****  **************************************************************************************************
+  34:../MotorLib/bldc_scalar_user_interface.c ****  *
+  35:../MotorLib/bldc_scalar_user_interface.c ****  * Change History
+  36:../MotorLib/bldc_scalar_user_interface.c ****  * --------------
+  37:../MotorLib/bldc_scalar_user_interface.c ****  *
+  38:../MotorLib/bldc_scalar_user_interface.c ****  * 2016-08-31:
+  39:../MotorLib/bldc_scalar_user_interface.c ****  *     - Initial version
+  40:../MotorLib/bldc_scalar_user_interface.c **** 
+  41:../MotorLib/bldc_scalar_user_interface.c ****  *
+  42:../MotorLib/bldc_scalar_user_interface.c ****  */
+  43:../MotorLib/bldc_scalar_user_interface.c **** 
+  44:../MotorLib/bldc_scalar_user_interface.c **** /**************************************************************************************************
+  45:../MotorLib/bldc_scalar_user_interface.c ****  * HEADER FILES
+  46:../MotorLib/bldc_scalar_user_interface.c ****  **************************************************************************************************
+  47:../MotorLib/bldc_scalar_user_interface.c **** #include "bldc_scalar_user_interface.h"
+  48:../MotorLib/bldc_scalar_user_interface.c **** 
+  49:../MotorLib/bldc_scalar_user_interface.c **** /**************************************************************************************************
+  50:../MotorLib/bldc_scalar_user_interface.c ****  * MACROS
+  51:../MotorLib/bldc_scalar_user_interface.c ****  **************************************************************************************************
+  52:../MotorLib/bldc_scalar_user_interface.c **** #define BLDC_SCALAR_SETTLING_TIME          (0x7FFFFU)
+  53:../MotorLib/bldc_scalar_user_interface.c **** #define BLDC_SCALAR_MCM_PATTERN_TABLE_SIZE (15U)
+  54:../MotorLib/bldc_scalar_user_interface.c **** /**************************************************************************************************
+  55:../MotorLib/bldc_scalar_user_interface.c ****  * LOCAL DATA
+  56:../MotorLib/bldc_scalar_user_interface.c ****  **************************************************************************************************
+  57:../MotorLib/bldc_scalar_user_interface.c **** 
+  58:../MotorLib/bldc_scalar_user_interface.c **** /**************************************************************************************************
+  59:../MotorLib/bldc_scalar_user_interface.c ****  * LOCAL ROUTINES
+  60:../MotorLib/bldc_scalar_user_interface.c ****  **************************************************************************************************
+  61:../MotorLib/bldc_scalar_user_interface.c **** /**
+  62:../MotorLib/bldc_scalar_user_interface.c ****  * One time initialization of the BLDC_SCALAR data structure variables based on configuration
+  63:../MotorLib/bldc_scalar_user_interface.c ****  */
+  64:../MotorLib/bldc_scalar_user_interface.c **** static void Motor0_BLDC_SCALAR_MotorVarInit(void);
+  65:../MotorLib/bldc_scalar_user_interface.c **** 
+  66:../MotorLib/bldc_scalar_user_interface.c **** /**
+  67:../MotorLib/bldc_scalar_user_interface.c ****  * Initialization of VADC
+  68:../MotorLib/bldc_scalar_user_interface.c ****  */
+  69:../MotorLib/bldc_scalar_user_interface.c **** static void Motor0_BLDC_SCALAR_MeasurementInit(void);
+  70:../MotorLib/bldc_scalar_user_interface.c **** /**************************************************************************************************
+  71:../MotorLib/bldc_scalar_user_interface.c **** * API IMPLEMENTATION
+  72:../MotorLib/bldc_scalar_user_interface.c **** ***************************************************************************************************
+  73:../MotorLib/bldc_scalar_user_interface.c **** /* One time initialization of the BLDC_SCALAR data structure variables based on configuration */
+  74:../MotorLib/bldc_scalar_user_interface.c **** static void Motor0_BLDC_SCALAR_MotorVarInit(void)
+  75:../MotorLib/bldc_scalar_user_interface.c **** {
+  27              	 .loc 1 75 1
+  28              	 .cfi_startproc
+  29              	 
+  30              	 
+  31              	 
+  32 0000 80B4     	 push {r7}
+  33              	.LCFI0:
+  34              	 .cfi_def_cfa_offset 4
+  35              	 .cfi_offset 7,-4
+  36 0002 83B0     	 sub sp,sp,#12
+  37              	.LCFI1:
+  38              	 .cfi_def_cfa_offset 16
+  39 0004 00AF     	 add r7,sp,#0
+  40              	.LCFI2:
+  41              	 .cfi_def_cfa_register 7
+  76:../MotorLib/bldc_scalar_user_interface.c ****   uint8_t mcm_index;              /* loop count to update multi-channel pattern for sync rectificat
+  77:../MotorLib/bldc_scalar_user_interface.c **** 
+  78:../MotorLib/bldc_scalar_user_interface.c **** /*******************************************************************************/
+  79:../MotorLib/bldc_scalar_user_interface.c ****   /* Initialize the start value of the ramp */
+  80:../MotorLib/bldc_scalar_user_interface.c **** #if (MOTOR0_BLDC_SCALAR_ENABLE_RAMP == 1U)
+  81:../MotorLib/bldc_scalar_user_interface.c **** 
+  82:../MotorLib/bldc_scalar_user_interface.c ****   /* Start the ramp from start value if analog input is disabled */
+  83:../MotorLib/bldc_scalar_user_interface.c **** #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_POTENTIOMETER_MEASUREMENT == 0U)
+  84:../MotorLib/bldc_scalar_user_interface.c **** #if ((MOTOR0_BLDC_SCALAR_CTRL_SCHEME == BLDC_SCALAR_SPEED_CTRL) || (MOTOR0_BLDC_SCALAR_CTRL_SCHEME 
+  85:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Ramp.set_value = Motor0_BLDC_SCALAR_SpeedControl.user_start_speed_set;
+  42              	 .loc 1 85 70
+  43 0006 314B     	 ldr r3,.L7
+  44 0008 1B68     	 ldr r3,[r3]
+  45              	 .loc 1 85 37
+  46 000a 314A     	 ldr r2,.L7+4
+  47 000c 1360     	 str r3,[r2]
+  86:../MotorLib/bldc_scalar_user_interface.c **** #elif ((MOTOR0_BLDC_SCALAR_CTRL_SCHEME == BLDC_SCALAR_CURRENT_CTRL))
+  87:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Ramp.set_value = Motor0_BLDC_SCALAR_CurrentControl.user_start_current_set;
+  88:../MotorLib/bldc_scalar_user_interface.c **** #elif ((MOTOR0_BLDC_SCALAR_CTRL_SCHEME == BLDC_SCALAR_VOLTAGE_CTRL))
+  89:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Ramp.set_value = Motor0_BLDC_SCALAR_VoltageControl.user_start_voltage_set;
+  90:../MotorLib/bldc_scalar_user_interface.c **** #endif
+  91:../MotorLib/bldc_scalar_user_interface.c **** #endif /*end of #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_POTENTIOMETER_MEASUREMENT == 0U)*/
+  92:../MotorLib/bldc_scalar_user_interface.c **** 
+  93:../MotorLib/bldc_scalar_user_interface.c **** #endif /* end of #if (MOTOR0_BLDC_SCALAR_ENABLE_RAMP == 1U) */
+  94:../MotorLib/bldc_scalar_user_interface.c **** 
+  95:../MotorLib/bldc_scalar_user_interface.c **** /******************start: mc_pattern table*****************************/
+  96:../MotorLib/bldc_scalar_user_interface.c ****   /* multi-channel pattern generation for high side sync modulation */
+  97:../MotorLib/bldc_scalar_user_interface.c ****   for (mcm_index = 0U; mcm_index <= BLDC_SCALAR_MCM_PATTERN_TABLE_SIZE; mcm_index++)
+  48              	 .loc 1 97 18
+  49 000e 0023     	 movs r3,#0
+  50 0010 FB71     	 strb r3,[r7,#7]
+  51              	 .loc 1 97 3
+  52 0012 50E0     	 b .L2
+  53              	.L6:
+  98:../MotorLib/bldc_scalar_user_interface.c ****   {
+  99:../MotorLib/bldc_scalar_user_interface.c ****     if ((Motor0_BLDC_SCALAR.mc_pattern[1][mcm_index] & ((uint32_t)0xFU << (uint32_t)(4U * MOTOR0_BL
+  54              	 .loc 1 99 42
+  55 0014 FB79     	 ldrb r3,[r7,#7]
+  56 0016 2F4A     	 ldr r2,.L7+8
+  57 0018 1033     	 adds r3,r3,#16
+  58 001a 5B00     	 lsls r3,r3,#1
+  59 001c 1344     	 add r3,r3,r2
+  60 001e 9B88     	 ldrh r3,[r3,#4]
+  61              	 .loc 1 99 54
+  62 0020 03F47063 	 and r3,r3,#3840
+  63              	 .loc 1 99 8
+  64 0024 B3F5807F 	 cmp r3,#256
+  65 0028 0FD1     	 bne .L3
+ 100:../MotorLib/bldc_scalar_user_interface.c ****         ((uint32_t)0x1U << (uint32_t)(4U * MOTOR0_BLDC_SCALAR_CCU8_PH_U_SLICE_NUM)))
+ 101:../MotorLib/bldc_scalar_user_interface.c ****     {
+ 102:../MotorLib/bldc_scalar_user_interface.c ****       Motor0_BLDC_SCALAR.mc_pattern[0][mcm_index] =  (uint16_t)((Motor0_BLDC_SCALAR.mc_pattern[1][m
+  66              	 .loc 1 102 98
+  67 002a FB79     	 ldrb r3,[r7,#7]
+  68 002c 294A     	 ldr r2,.L7+8
+  69 002e 1033     	 adds r3,r3,#16
+  70 0030 5B00     	 lsls r3,r3,#1
+  71 0032 1344     	 add r3,r3,r2
+  72 0034 9A88     	 ldrh r2,[r3,#4]
+  73              	 .loc 1 102 39
+  74 0036 FB79     	 ldrb r3,[r7,#7]
+  75              	 .loc 1 102 54
+  76 0038 42F40072 	 orr r2,r2,#512
+  77 003c 91B2     	 uxth r1,r2
+  78              	 .loc 1 102 51
+  79 003e 254A     	 ldr r2,.L7+8
+  80 0040 5B00     	 lsls r3,r3,#1
+  81 0042 1344     	 add r3,r3,r2
+  82 0044 0A46     	 mov r2,r1
+  83 0046 9A80     	 strh r2,[r3,#4]
+  84 0048 32E0     	 b .L4
+  85              	.L3:
+ 103:../MotorLib/bldc_scalar_user_interface.c ****     }
+ 104:../MotorLib/bldc_scalar_user_interface.c ****     else if ((Motor0_BLDC_SCALAR.mc_pattern[1][mcm_index] & ((uint32_t)0xFU << (uint32_t)(4U * MOTO
+  86              	 .loc 1 104 47
+  87 004a FB79     	 ldrb r3,[r7,#7]
+  88 004c 214A     	 ldr r2,.L7+8
+  89 004e 1033     	 adds r3,r3,#16
+  90 0050 5B00     	 lsls r3,r3,#1
+  91 0052 1344     	 add r3,r3,r2
+  92 0054 9B88     	 ldrh r3,[r3,#4]
+  93              	 .loc 1 104 59
+  94 0056 03F0F003 	 and r3,r3,#240
+  95              	 .loc 1 104 13
+  96 005a 102B     	 cmp r3,#16
+  97 005c 0FD1     	 bne .L5
+ 105:../MotorLib/bldc_scalar_user_interface.c ****         ((uint32_t)0x1U << (uint32_t)(4U * MOTOR0_BLDC_SCALAR_CCU8_PH_V_SLICE_NUM)))
+ 106:../MotorLib/bldc_scalar_user_interface.c ****     {
+ 107:../MotorLib/bldc_scalar_user_interface.c ****       Motor0_BLDC_SCALAR.mc_pattern[0][mcm_index] =  (uint16_t)((Motor0_BLDC_SCALAR.mc_pattern[1][m
+  98              	 .loc 1 107 98
+  99 005e FB79     	 ldrb r3,[r7,#7]
+ 100 0060 1C4A     	 ldr r2,.L7+8
+ 101 0062 1033     	 adds r3,r3,#16
+ 102 0064 5B00     	 lsls r3,r3,#1
+ 103 0066 1344     	 add r3,r3,r2
+ 104 0068 9A88     	 ldrh r2,[r3,#4]
+ 105              	 .loc 1 107 39
+ 106 006a FB79     	 ldrb r3,[r7,#7]
+ 107              	 .loc 1 107 54
+ 108 006c 42F02002 	 orr r2,r2,#32
+ 109 0070 91B2     	 uxth r1,r2
+ 110              	 .loc 1 107 51
+ 111 0072 184A     	 ldr r2,.L7+8
+ 112 0074 5B00     	 lsls r3,r3,#1
+ 113 0076 1344     	 add r3,r3,r2
+ 114 0078 0A46     	 mov r2,r1
+ 115 007a 9A80     	 strh r2,[r3,#4]
+ 116 007c 18E0     	 b .L4
+ 117              	.L5:
+ 108:../MotorLib/bldc_scalar_user_interface.c ****     }
+ 109:../MotorLib/bldc_scalar_user_interface.c ****     else if ((Motor0_BLDC_SCALAR.mc_pattern[1][mcm_index] & ((uint32_t)0xFU << (uint32_t)(4U * MOTO
+ 118              	 .loc 1 109 47
+ 119 007e FB79     	 ldrb r3,[r7,#7]
+ 120 0080 144A     	 ldr r2,.L7+8
+ 121 0082 1033     	 adds r3,r3,#16
+ 122 0084 5B00     	 lsls r3,r3,#1
+ 123 0086 1344     	 add r3,r3,r2
+ 124 0088 9B88     	 ldrh r3,[r3,#4]
+ 125              	 .loc 1 109 59
+ 126 008a 03F00F03 	 and r3,r3,#15
+ 127              	 .loc 1 109 13
+ 128 008e 012B     	 cmp r3,#1
+ 129 0090 0ED1     	 bne .L4
+ 110:../MotorLib/bldc_scalar_user_interface.c ****         ((uint32_t)0x1U << (uint32_t)(4U * MOTOR0_BLDC_SCALAR_CCU8_PH_W_SLICE_NUM)))
+ 111:../MotorLib/bldc_scalar_user_interface.c ****     {
+ 112:../MotorLib/bldc_scalar_user_interface.c ****       Motor0_BLDC_SCALAR.mc_pattern[0][mcm_index] =  (uint16_t)((Motor0_BLDC_SCALAR.mc_pattern[1][m
+ 130              	 .loc 1 112 98
+ 131 0092 FB79     	 ldrb r3,[r7,#7]
+ 132 0094 0F4A     	 ldr r2,.L7+8
+ 133 0096 1033     	 adds r3,r3,#16
+ 134 0098 5B00     	 lsls r3,r3,#1
+ 135 009a 1344     	 add r3,r3,r2
+ 136 009c 9A88     	 ldrh r2,[r3,#4]
+ 137              	 .loc 1 112 39
+ 138 009e FB79     	 ldrb r3,[r7,#7]
+ 139              	 .loc 1 112 54
+ 140 00a0 42F00202 	 orr r2,r2,#2
+ 141 00a4 91B2     	 uxth r1,r2
+ 142              	 .loc 1 112 51
+ 143 00a6 0B4A     	 ldr r2,.L7+8
+ 144 00a8 5B00     	 lsls r3,r3,#1
+ 145 00aa 1344     	 add r3,r3,r2
+ 146 00ac 0A46     	 mov r2,r1
+ 147 00ae 9A80     	 strh r2,[r3,#4]
+ 148              	.L4:
+  97:../MotorLib/bldc_scalar_user_interface.c ****   {
+ 149              	 .loc 1 97 82 discriminator 2
+ 150 00b0 FB79     	 ldrb r3,[r7,#7]
+ 151 00b2 0133     	 adds r3,r3,#1
+ 152 00b4 FB71     	 strb r3,[r7,#7]
+ 153              	.L2:
+  97:../MotorLib/bldc_scalar_user_interface.c ****   {
+ 154              	 .loc 1 97 3 discriminator 1
+ 155 00b6 FB79     	 ldrb r3,[r7,#7]
+ 156 00b8 0F2B     	 cmp r3,#15
+ 157 00ba ABD9     	 bls .L6
+ 113:../MotorLib/bldc_scalar_user_interface.c ****     }
+ 114:../MotorLib/bldc_scalar_user_interface.c ****     else
+ 115:../MotorLib/bldc_scalar_user_interface.c ****     {
+ 116:../MotorLib/bldc_scalar_user_interface.c **** 
+ 117:../MotorLib/bldc_scalar_user_interface.c ****     }
+ 118:../MotorLib/bldc_scalar_user_interface.c ****   }
+ 119:../MotorLib/bldc_scalar_user_interface.c ****   /******************end: mc_pattern table*****************************/
+ 120:../MotorLib/bldc_scalar_user_interface.c **** 
+ 121:../MotorLib/bldc_scalar_user_interface.c **** }
+ 158              	 .loc 1 121 1
+ 159 00bc 00BF     	 nop
+ 160 00be 00BF     	 nop
+ 161 00c0 0C37     	 adds r7,r7,#12
+ 162              	.LCFI3:
+ 163              	 .cfi_def_cfa_offset 4
+ 164 00c2 BD46     	 mov sp,r7
+ 165              	.LCFI4:
+ 166              	 .cfi_def_cfa_register 13
+ 167              	 
+ 168 00c4 5DF8047B 	 ldr r7,[sp],#4
+ 169              	.LCFI5:
+ 170              	 .cfi_restore 7
+ 171              	 .cfi_def_cfa_offset 0
+ 172 00c8 7047     	 bx lr
+ 173              	.L8:
+ 174 00ca 00BF     	 .align 2
+ 175              	.L7:
+ 176 00cc 00000000 	 .word Motor0_BLDC_SCALAR_SpeedControl
+ 177 00d0 00000000 	 .word Motor0_BLDC_SCALAR_Ramp
+ 178 00d4 00000000 	 .word Motor0_BLDC_SCALAR
+ 179              	 .cfi_endproc
+ 180              	.LFE449:
+ 182              	 .section .text.Motor0_BLDC_SCALAR_MeasurementInit,"ax",%progbits
+ 183              	 .align 1
+ 184              	 .syntax unified
+ 185              	 .thumb
+ 186              	 .thumb_func
+ 187              	 .fpu fpv4-sp-d16
+ 189              	Motor0_BLDC_SCALAR_MeasurementInit:
+ 190              	.LFB450:
+ 122:../MotorLib/bldc_scalar_user_interface.c **** 
+ 123:../MotorLib/bldc_scalar_user_interface.c **** 
+ 124:../MotorLib/bldc_scalar_user_interface.c **** static void Motor0_BLDC_SCALAR_MeasurementInit(void)
+ 125:../MotorLib/bldc_scalar_user_interface.c **** {
+ 191              	 .loc 1 125 1
+ 192              	 .cfi_startproc
+ 193              	 
+ 194              	 
+ 195 0000 80B5     	 push {r7,lr}
+ 196              	.LCFI6:
+ 197              	 .cfi_def_cfa_offset 8
+ 198              	 .cfi_offset 7,-8
+ 199              	 .cfi_offset 14,-4
+ 200 0002 00AF     	 add r7,sp,#0
+ 201              	.LCFI7:
+ 202              	 .cfi_def_cfa_register 7
+ 126:../MotorLib/bldc_scalar_user_interface.c ****   /* Initialize VADC peripheral */
+ 127:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_VADC_Init();
+ 203              	 .loc 1 127 3
+ 204 0004 FFF7FEFF 	 bl Motor0_BLDC_SCALAR_VADC_Init
+ 128:../MotorLib/bldc_scalar_user_interface.c **** 
+ 129:../MotorLib/bldc_scalar_user_interface.c ****   /* Channel,Result register and Queue entry configuration for configured channels */
+ 130:../MotorLib/bldc_scalar_user_interface.c ****   /* Calling sequence of below functions will decide the Queue entries sequence in corresponding Qu
+ 131:../MotorLib/bldc_scalar_user_interface.c ****   #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_IDC_LINK_MEASUREMENT == 1U)
+ 132:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Current_Measurment_Init();
+ 205              	 .loc 1 132 3
+ 206 0008 FFF7FEFF 	 bl Motor0_BLDC_SCALAR_Current_Measurment_Init
+ 133:../MotorLib/bldc_scalar_user_interface.c ****   #endif
+ 134:../MotorLib/bldc_scalar_user_interface.c **** 
+ 135:../MotorLib/bldc_scalar_user_interface.c ****   #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_IDC_AVERAGE_MEASUREMENT == 1U)
+ 136:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_AverageCurrent_Measurment_Init();
+ 137:../MotorLib/bldc_scalar_user_interface.c ****   #endif
+ 138:../MotorLib/bldc_scalar_user_interface.c **** 
+ 139:../MotorLib/bldc_scalar_user_interface.c ****   #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_VDC_LINK_MEASUREMENT == 1U)
+ 140:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Volt_DCBus_Measurement_Init();
+ 141:../MotorLib/bldc_scalar_user_interface.c ****   #endif
+ 142:../MotorLib/bldc_scalar_user_interface.c **** 
+ 143:../MotorLib/bldc_scalar_user_interface.c ****   #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_POTENTIOMETER_MEASUREMENT == 1U)
+ 144:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Volt_Potentiometer_Init();
+ 145:../MotorLib/bldc_scalar_user_interface.c ****   #endif
+ 146:../MotorLib/bldc_scalar_user_interface.c **** 
+ 147:../MotorLib/bldc_scalar_user_interface.c ****   #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_USER_DEF1_MEASUREMENT == 1U)
+ 148:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Volt_Userdef1_Init();
+ 149:../MotorLib/bldc_scalar_user_interface.c ****   #endif
+ 150:../MotorLib/bldc_scalar_user_interface.c **** 
+ 151:../MotorLib/bldc_scalar_user_interface.c ****   #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_USER_DEF2_MEASUREMENT == 1U)
+ 152:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Volt_Userdef2_Init();
+ 153:../MotorLib/bldc_scalar_user_interface.c ****   #endif
+ 154:../MotorLib/bldc_scalar_user_interface.c **** 
+ 155:../MotorLib/bldc_scalar_user_interface.c ****   #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_USER_DEF3_MEASUREMENT == 1U)
+ 156:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Volt_Userdef3_Init();
+ 157:../MotorLib/bldc_scalar_user_interface.c ****   #endif
+ 158:../MotorLib/bldc_scalar_user_interface.c **** 
+ 159:../MotorLib/bldc_scalar_user_interface.c ****   #if (MOTOR0_BLDC_SCALAR_VADC_ENABLE_USER_DEF4_MEASUREMENT == 1U)
+ 160:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_Volt_Userdef4_Init();
+ 161:../MotorLib/bldc_scalar_user_interface.c ****   #endif
+ 162:../MotorLib/bldc_scalar_user_interface.c **** }
+ 207              	 .loc 1 162 1
+ 208 000c 00BF     	 nop
+ 209 000e 80BD     	 pop {r7,pc}
+ 210              	 .cfi_endproc
+ 211              	.LFE450:
+ 213              	 .section .text.Motor0_BLDC_SCALAR_Init,"ax",%progbits
+ 214              	 .align 1
+ 215              	 .global Motor0_BLDC_SCALAR_Init
+ 216              	 .syntax unified
+ 217              	 .thumb
+ 218              	 .thumb_func
+ 219              	 .fpu fpv4-sp-d16
+ 221              	Motor0_BLDC_SCALAR_Init:
+ 222              	.LFB451:
+ 163:../MotorLib/bldc_scalar_user_interface.c **** 
+ 164:../MotorLib/bldc_scalar_user_interface.c **** 
+ 165:../MotorLib/bldc_scalar_user_interface.c **** /* Initialize the required peripherals, modules and interrupts */
+ 166:../MotorLib/bldc_scalar_user_interface.c **** void Motor0_BLDC_SCALAR_Init(void)
+ 167:../MotorLib/bldc_scalar_user_interface.c **** {
+ 223              	 .loc 1 167 1
+ 224              	 .cfi_startproc
+ 225              	 
+ 226              	 
+ 227 0000 80B5     	 push {r7,lr}
+ 228              	.LCFI8:
+ 229              	 .cfi_def_cfa_offset 8
+ 230              	 .cfi_offset 7,-8
+ 231              	 .cfi_offset 14,-4
+ 232 0002 82B0     	 sub sp,sp,#8
+ 233              	.LCFI9:
+ 234              	 .cfi_def_cfa_offset 16
+ 235 0004 00AF     	 add r7,sp,#0
+ 236              	.LCFI10:
+ 237              	 .cfi_def_cfa_register 7
+ 168:../MotorLib/bldc_scalar_user_interface.c ****   volatile uint32_t delay_counter;
+ 169:../MotorLib/bldc_scalar_user_interface.c **** 
+ 170:../MotorLib/bldc_scalar_user_interface.c ****   /* Initialization settling period */
+ 171:../MotorLib/bldc_scalar_user_interface.c ****   for (delay_counter = 0U; delay_counter < (uint32_t)BLDC_SCALAR_SETTLING_TIME; delay_counter++)
+ 238              	 .loc 1 171 22
+ 239 0006 0023     	 movs r3,#0
+ 240 0008 7B60     	 str r3,[r7,#4]
+ 241              	 .loc 1 171 3
+ 242 000a 02E0     	 b .L11
+ 243              	.L12:
+ 244              	 .loc 1 171 94 discriminator 3
+ 245 000c 7B68     	 ldr r3,[r7,#4]
+ 246 000e 0133     	 adds r3,r3,#1
+ 247 0010 7B60     	 str r3,[r7,#4]
+ 248              	.L11:
+ 249              	 .loc 1 171 42 discriminator 1
+ 250 0012 7B68     	 ldr r3,[r7,#4]
+ 251              	 .loc 1 171 3 discriminator 1
+ 252 0014 074A     	 ldr r2,.L13
+ 253 0016 9342     	 cmp r3,r2
+ 254 0018 F8D9     	 bls .L12
+ 172:../MotorLib/bldc_scalar_user_interface.c ****   {
+ 173:../MotorLib/bldc_scalar_user_interface.c **** 
+ 174:../MotorLib/bldc_scalar_user_interface.c ****   }
+ 175:../MotorLib/bldc_scalar_user_interface.c **** 
+ 176:../MotorLib/bldc_scalar_user_interface.c ****   /* Initializes block commutation module along with the peripherals - CCU8, GPIO */
+ 177:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_PWM_BC_Init();
+ 255              	 .loc 1 177 3
+ 256 001a FFF7FEFF 	 bl Motor0_BLDC_SCALAR_PWM_BC_Init
+ 178:../MotorLib/bldc_scalar_user_interface.c **** 
+ 179:../MotorLib/bldc_scalar_user_interface.c ****   /* Initializes hall feedback module along with the peripherals - POSIF, CCU4, GPIO */
+ 180:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_SPEED_POS_HALL_Init();
+ 257              	 .loc 1 180 3
+ 258 001e FFF7FEFF 	 bl Motor0_BLDC_SCALAR_SPEED_POS_HALL_Init
+ 181:../MotorLib/bldc_scalar_user_interface.c **** 
+ 182:../MotorLib/bldc_scalar_user_interface.c ****   /* Initializes measurement module along with the peripherals - VADC, GPIO */
+ 183:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_MeasurementInit();
+ 259              	 .loc 1 183 3
+ 260 0022 FFF7FEFF 	 bl Motor0_BLDC_SCALAR_MeasurementInit
+ 184:../MotorLib/bldc_scalar_user_interface.c **** 
+ 185:../MotorLib/bldc_scalar_user_interface.c ****   /* Initializes BLDC_SCALAR data structure elements based on the user configurations */
+ 186:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_MotorVarInit();
+ 261              	 .loc 1 186 3
+ 262 0026 FFF7FEFF 	 bl Motor0_BLDC_SCALAR_MotorVarInit
+ 187:../MotorLib/bldc_scalar_user_interface.c **** 
+ 188:../MotorLib/bldc_scalar_user_interface.c ****   /* Initializes systick - this will start the statemachine interrupt */
+ 189:../MotorLib/bldc_scalar_user_interface.c ****   //BLDC_SCALAR_SYSTICK_TIMER_Init();
+ 190:../MotorLib/bldc_scalar_user_interface.c **** 
+ 191:../MotorLib/bldc_scalar_user_interface.c **** }
+ 263              	 .loc 1 191 1
+ 264 002a 00BF     	 nop
+ 265 002c 0837     	 adds r7,r7,#8
+ 266              	.LCFI11:
+ 267              	 .cfi_def_cfa_offset 8
+ 268 002e BD46     	 mov sp,r7
+ 269              	.LCFI12:
+ 270              	 .cfi_def_cfa_register 13
+ 271              	 
+ 272 0030 80BD     	 pop {r7,pc}
+ 273              	.L14:
+ 274 0032 00BF     	 .align 2
+ 275              	.L13:
+ 276 0034 FEFF0700 	 .word 524286
+ 277              	 .cfi_endproc
+ 278              	.LFE451:
+ 280              	 .section .text.Motor0_BLDC_SCALAR_MotorStart,"ax",%progbits
+ 281              	 .align 1
+ 282              	 .global Motor0_BLDC_SCALAR_MotorStart
+ 283              	 .syntax unified
+ 284              	 .thumb
+ 285              	 .thumb_func
+ 286              	 .fpu fpv4-sp-d16
+ 288              	Motor0_BLDC_SCALAR_MotorStart:
+ 289              	.LFB452:
+ 192:../MotorLib/bldc_scalar_user_interface.c **** 
+ 193:../MotorLib/bldc_scalar_user_interface.c **** void Motor0_BLDC_SCALAR_MotorStart(void)
+ 194:../MotorLib/bldc_scalar_user_interface.c **** {
+ 290              	 .loc 1 194 1
+ 291              	 .cfi_startproc
+ 292              	 
+ 293              	 
+ 294 0000 80B5     	 push {r7,lr}
+ 295              	.LCFI13:
+ 296              	 .cfi_def_cfa_offset 8
+ 297              	 .cfi_offset 7,-8
+ 298              	 .cfi_offset 14,-4
+ 299 0002 00AF     	 add r7,sp,#0
+ 300              	.LCFI14:
+ 301              	 .cfi_def_cfa_register 7
+ 195:../MotorLib/bldc_scalar_user_interface.c ****   /*
+ 196:../MotorLib/bldc_scalar_user_interface.c ****    * Motor State machine should be in STOP state to start the motor.
+ 197:../MotorLib/bldc_scalar_user_interface.c ****   * In case of any error, motor start function won't be started
+ 198:../MotorLib/bldc_scalar_user_interface.c ****   * until clear all the errors.
+ 199:../MotorLib/bldc_scalar_user_interface.c ****   */
+ 200:../MotorLib/bldc_scalar_user_interface.c ****   if (Motor0_BLDC_SCALAR.msm_state == BLDC_SCALAR_MSM_STOP)
+ 302              	 .loc 1 200 25
+ 303 0004 064B     	 ldr r3,.L18
+ 304 0006 93F86430 	 ldrb r3,[r3,#100]
+ 305 000a DBB2     	 uxtb r3,r3
+ 306              	 .loc 1 200 6
+ 307 000c 002B     	 cmp r3,#0
+ 308 000e 05D1     	 bne .L17
+ 201:../MotorLib/bldc_scalar_user_interface.c ****   {
+ 202:../MotorLib/bldc_scalar_user_interface.c ****      Motor0_BLDC_SCALAR.msm_state = BLDC_SCALAR_MSM_START;
+ 309              	 .loc 1 202 35
+ 310 0010 034B     	 ldr r3,.L18
+ 311 0012 0122     	 movs r2,#1
+ 312 0014 83F86420 	 strb r2,[r3,#100]
+ 203:../MotorLib/bldc_scalar_user_interface.c ****      Motor0_BLDC_SCALAR_MSM();
+ 313              	 .loc 1 203 6
+ 314 0018 FFF7FEFF 	 bl Motor0_BLDC_SCALAR_MSM
+ 315              	.L17:
+ 204:../MotorLib/bldc_scalar_user_interface.c ****   }
+ 205:../MotorLib/bldc_scalar_user_interface.c **** }
+ 316              	 .loc 1 205 1
+ 317 001c 00BF     	 nop
+ 318 001e 80BD     	 pop {r7,pc}
+ 319              	.L19:
+ 320              	 .align 2
+ 321              	.L18:
+ 322 0020 00000000 	 .word Motor0_BLDC_SCALAR
+ 323              	 .cfi_endproc
+ 324              	.LFE452:
+ 326              	 .section .text.Motor0_BLDC_SCALAR_MotorStop,"ax",%progbits
+ 327              	 .align 1
+ 328              	 .global Motor0_BLDC_SCALAR_MotorStop
+ 329              	 .syntax unified
+ 330              	 .thumb
+ 331              	 .thumb_func
+ 332              	 .fpu fpv4-sp-d16
+ 334              	Motor0_BLDC_SCALAR_MotorStop:
+ 335              	.LFB453:
+ 206:../MotorLib/bldc_scalar_user_interface.c **** 
+ 207:../MotorLib/bldc_scalar_user_interface.c **** void Motor0_BLDC_SCALAR_MotorStop(void)
+ 208:../MotorLib/bldc_scalar_user_interface.c **** {
+ 336              	 .loc 1 208 1
+ 337              	 .cfi_startproc
+ 338              	 
+ 339              	 
+ 340 0000 80B5     	 push {r7,lr}
+ 341              	.LCFI15:
+ 342              	 .cfi_def_cfa_offset 8
+ 343              	 .cfi_offset 7,-8
+ 344              	 .cfi_offset 14,-4
+ 345 0002 00AF     	 add r7,sp,#0
+ 346              	.LCFI16:
+ 347              	 .cfi_def_cfa_register 7
+ 209:../MotorLib/bldc_scalar_user_interface.c ****   /*stop pwm bc*/
+ 210:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_PWM_BC_Stop();
+ 348              	 .loc 1 210 3
+ 349 0004 FFF7FEFF 	 bl Motor0_BLDC_SCALAR_PWM_BC_Stop
+ 211:../MotorLib/bldc_scalar_user_interface.c **** 
+ 212:../MotorLib/bldc_scalar_user_interface.c ****   /*stop posif*/
+ 213:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_SPEED_POS_HALL_Stop();
+ 350              	 .loc 1 213 3
+ 351 0008 FFF7FEFF 	 bl Motor0_BLDC_SCALAR_SPEED_POS_HALL_Stop
+ 214:../MotorLib/bldc_scalar_user_interface.c **** 
+ 215:../MotorLib/bldc_scalar_user_interface.c **** #if (MOTOR0_BLDC_SCALAR_INVERTER_ENABLE_CONF != BLDC_SCALAR_INV_DISABLED)
+ 216:../MotorLib/bldc_scalar_user_interface.c ****   /*disable inverter*/
+ 217:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR_PWM_BC_InverterDisable();
+ 352              	 .loc 1 217 3
+ 353 000c FFF7FEFF 	 bl Motor0_BLDC_SCALAR_PWM_BC_InverterDisable
+ 218:../MotorLib/bldc_scalar_user_interface.c **** #endif
+ 219:../MotorLib/bldc_scalar_user_interface.c **** 
+ 220:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR.motor_speed = 0;
+ 354              	 .loc 1 220 34
+ 355 0010 0C4B     	 ldr r3,.L24
+ 356 0012 0022     	 movs r2,#0
+ 357 0014 DA66     	 str r2,[r3,#108]
+ 221:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR.motor_current = 0;
+ 358              	 .loc 1 221 36
+ 359 0016 0B4B     	 ldr r3,.L24
+ 360 0018 0022     	 movs r2,#0
+ 361 001a 1A67     	 str r2,[r3,#112]
+ 222:../MotorLib/bldc_scalar_user_interface.c ****   Motor0_BLDC_SCALAR.motor_average_current = 0;
+ 362              	 .loc 1 222 44
+ 363 001c 094B     	 ldr r3,.L24
+ 364 001e 0022     	 movs r2,#0
+ 365 0020 5A67     	 str r2,[r3,#116]
+ 223:../MotorLib/bldc_scalar_user_interface.c **** 
+ 224:../MotorLib/bldc_scalar_user_interface.c ****   if (Motor0_BLDC_SCALAR.error_status != 0U)
+ 366              	 .loc 1 224 25
+ 367 0022 084B     	 ldr r3,.L24
+ 368 0024 9B6E     	 ldr r3,[r3,#104]
+ 369              	 .loc 1 224 6
+ 370 0026 002B     	 cmp r3,#0
+ 371 0028 06D0     	 beq .L21
+ 225:../MotorLib/bldc_scalar_user_interface.c ****   {
+ 226:../MotorLib/bldc_scalar_user_interface.c ****     Motor0_BLDC_SCALAR.msm_state = BLDC_SCALAR_MSM_ERROR;
+ 372              	 .loc 1 226 34
+ 373 002a 064B     	 ldr r3,.L24
+ 374 002c 0822     	 movs r2,#8
+ 375 002e 83F86420 	 strb r2,[r3,#100]
+ 227:../MotorLib/bldc_scalar_user_interface.c ****     /*Change motor control state machine to error*/
+ 228:../MotorLib/bldc_scalar_user_interface.c ****     Motor0_BLDC_SCALAR_MSM();
+ 376              	 .loc 1 228 5
+ 377 0032 FFF7FEFF 	 bl Motor0_BLDC_SCALAR_MSM
+ 229:../MotorLib/bldc_scalar_user_interface.c ****   }
+ 230:../MotorLib/bldc_scalar_user_interface.c ****   else
+ 231:../MotorLib/bldc_scalar_user_interface.c ****   {
+ 232:../MotorLib/bldc_scalar_user_interface.c ****     /* Change motor control state machine to stop */
+ 233:../MotorLib/bldc_scalar_user_interface.c ****     Motor0_BLDC_SCALAR.msm_state = BLDC_SCALAR_MSM_STOP;
+ 234:../MotorLib/bldc_scalar_user_interface.c ****   }
+ 235:../MotorLib/bldc_scalar_user_interface.c **** }
+ 378              	 .loc 1 235 1
+ 379 0036 03E0     	 b .L23
+ 380              	.L21:
+ 233:../MotorLib/bldc_scalar_user_interface.c ****   }
+ 381              	 .loc 1 233 34
+ 382 0038 024B     	 ldr r3,.L24
+ 383 003a 0022     	 movs r2,#0
+ 384 003c 83F86420 	 strb r2,[r3,#100]
+ 385              	.L23:
+ 386              	 .loc 1 235 1
+ 387 0040 00BF     	 nop
+ 388 0042 80BD     	 pop {r7,pc}
+ 389              	.L25:
+ 390              	 .align 2
+ 391              	.L24:
+ 392 0044 00000000 	 .word Motor0_BLDC_SCALAR
+ 393              	 .cfi_endproc
+ 394              	.LFE453:
+ 396              	 .text
+ 397              	.Letext0:
+ 398              	 .file 2 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 399              	 .file 3 "c:\\program files (x86)\\gnu arm embedded toolchain\\10 2020-q4-major\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 400              	 .file 4 "../MotorLib/ControlModule/../ControlModule/bldc_scalar_ramp_generator.h"
+ 401              	 .file 5 "../MotorLib/ControlModule/bldc_scalar_control_scheme.h"
+DEFINED SYMBOLS
+                            *ABS*:00000000 bldc_scalar_user_interface.c
+    {standard input}:17     .text.Motor0_BLDC_SCALAR_MotorVarInit:00000000 $t
+    {standard input}:24     .text.Motor0_BLDC_SCALAR_MotorVarInit:00000000 Motor0_BLDC_SCALAR_MotorVarInit
+    {standard input}:176    .text.Motor0_BLDC_SCALAR_MotorVarInit:000000cc $d
+    {standard input}:183    .text.Motor0_BLDC_SCALAR_MeasurementInit:00000000 $t
+    {standard input}:189    .text.Motor0_BLDC_SCALAR_MeasurementInit:00000000 Motor0_BLDC_SCALAR_MeasurementInit
+    {standard input}:214    .text.Motor0_BLDC_SCALAR_Init:00000000 $t
+    {standard input}:221    .text.Motor0_BLDC_SCALAR_Init:00000000 Motor0_BLDC_SCALAR_Init
+    {standard input}:276    .text.Motor0_BLDC_SCALAR_Init:00000034 $d
+    {standard input}:281    .text.Motor0_BLDC_SCALAR_MotorStart:00000000 $t
+    {standard input}:288    .text.Motor0_BLDC_SCALAR_MotorStart:00000000 Motor0_BLDC_SCALAR_MotorStart
+    {standard input}:322    .text.Motor0_BLDC_SCALAR_MotorStart:00000020 $d
+    {standard input}:327    .text.Motor0_BLDC_SCALAR_MotorStop:00000000 $t
+    {standard input}:334    .text.Motor0_BLDC_SCALAR_MotorStop:00000000 Motor0_BLDC_SCALAR_MotorStop
+    {standard input}:392    .text.Motor0_BLDC_SCALAR_MotorStop:00000044 $d
+
+UNDEFINED SYMBOLS
+Motor0_BLDC_SCALAR_SpeedControl
+Motor0_BLDC_SCALAR_Ramp
+Motor0_BLDC_SCALAR
+Motor0_BLDC_SCALAR_VADC_Init
+Motor0_BLDC_SCALAR_Current_Measurment_Init
+Motor0_BLDC_SCALAR_PWM_BC_Init
+Motor0_BLDC_SCALAR_SPEED_POS_HALL_Init
+Motor0_BLDC_SCALAR_MSM
+Motor0_BLDC_SCALAR_PWM_BC_Stop
+Motor0_BLDC_SCALAR_SPEED_POS_HALL_Stop
+Motor0_BLDC_SCALAR_PWM_BC_InverterDisable
